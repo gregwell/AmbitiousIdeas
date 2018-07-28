@@ -14,20 +14,36 @@ namespace CV_maker
         private static void Main(string[] args)
         {
             var doc = new Document(PageSize.A4);
-            PdfWriter.GetInstance(doc, new FileStream(@"D:\cv.pdf", FileMode.Create));
 
-            Chunk chunk = new Chunk("A chunk represents an isolated string.\n ");
-
-            doc.Open();
-            Phrase phrase = new Phrase();
-
-            for (int i = 0; i < 20; i++)
+            try
             {
-                phrase.Add(chunk);
-                doc.Add(phrase);
-            }
+                PdfWriter.GetInstance(doc, new FileStream(@"D:\cv.pdf", FileMode.Create));
+                Chunk chunk = new Chunk("A chunk represents an isolated string.\n ");
 
-            doc.Close();
+                doc.Open();
+                Phrase phrase = new Phrase();
+
+                for (int i = 0; i < 20; i++)
+                {
+                    phrase.Add(chunk);
+                    doc.Add(phrase);
+                }
+            }
+            catch (DocumentException dex)
+
+            {
+                throw (dex);
+            }
+            catch (IOException ioex)
+
+            {
+                throw (ioex);
+            }
+            finally
+
+            {
+                doc.Close();
+            }
         }
     }
 }

@@ -1,29 +1,60 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
+using iText.IO.Font;
+using iText.IO.Util;
+using iText.Kernel.Font;
+using iText.Kernel.Geom;
 using iText.Kernel.Pdf;
 using iText.Layout;
 using iText.Layout.Element;
+using iText.IO.Font.Constants;
 
-namespace CV_maker
+namespace Tutorial.Chapter01
 {
-    internal class helloworld
+    public class C01E04_UnitedStates
     {
-        private static void Main(string[] args)
-        {
-            var exportFile = System.IO.Path.Combine("D:", "Test.pdf");
+        public const String DEST = "D:/cv.pdf";
 
-            using (var writer = new PdfWriter(exportFile))
+        public static void Main(String[] args)
+        {
+            FileInfo file = new FileInfo(DEST);
+            file.Directory.Create();
+            new C01E04_UnitedStates().CreatePdf(DEST);
+        }
+
+        public virtual void CreatePdf(String dest)
+        {
+            //formal shit
+            var writer = new PdfWriter(dest);
+            var pdf = new PdfDocument(writer);
+            var document = new Document(pdf, PageSize.A4);
+            document.SetMargins(80, 80, 80, 80);
+
+            //fonts
+            var timesroman = PdfFontFactory.CreateFont(StandardFonts.TIMES_ROMAN);
+            var helvatica = PdfFontFactory.CreateFont(StandardFonts.HELVETICA);
+            var bold = PdfFontFactory.CreateFont(StandardFonts.HELVETICA_BOLD);
+            var italic = PdfFontFactory.CreateFont(StandardFonts.HELVETICA_OBLIQUE);
+
+            //reading from the file
+            string line;
+            using (var reader = new StreamReader("D:/data.txt"))
             {
-                using (var pdf = new PdfDocument(writer))
-                {
-                    var doc = new Document(pdf);
-                    doc.Add(new Paragraph("hello world"));
-                }
+                line = reader.ReadLine();
             }
+
+            document.Add(new Paragraph(line).SetFont(timesroman).SetFontSize(20));
+            document.Add(new Paragraph("Cirraculum Vitae").SetFontSize(9).SetFont(italic));
+
+            var table = new Table(new float[] { 1, 2 });
+
+            table.AddHeaderCell(new Cell().Add(new Paragraph("test")));
+            table.AddHeaderCell(new Cell().Add(new Paragraph("test")));
+            table.AddCell(new Cell().Add(new Paragraph("test")));
+            table.AddCell(new Cell().Add(new Paragraph("test")));
+
+            document.Add(table);
+            document.Close();
         }
     }
 }

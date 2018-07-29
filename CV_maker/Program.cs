@@ -23,11 +23,15 @@ namespace CV_maker
                 doc.Open();
                 Phrase phrase = new Phrase();
 
-                for (int i = 0; i < 20; i++)
+                for (int i = 0; i < 3; i++)
                 {
                     phrase.Add(chunk);
                     doc.Add(phrase);
                 }
+
+                doc.NewPage();
+
+                doc.Add(new Chunk("text", new Font(Font.FontFamily.TIMES_ROMAN, 30.5F)));
             }
             catch (DocumentException dex)
 

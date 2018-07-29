@@ -8,6 +8,7 @@ using iText.Kernel.Pdf;
 using iText.Layout;
 using iText.Layout.Element;
 using iText.IO.Font.Constants;
+using iText.Layout.Borders;
 
 namespace Tutorial.Chapter01
 {
@@ -48,10 +49,12 @@ namespace Tutorial.Chapter01
 
             var table = new Table(new float[] { 1, 2 });
 
-            table.AddHeaderCell(new Cell().Add(new Paragraph("test")));
-            table.AddHeaderCell(new Cell().Add(new Paragraph("test")));
-            table.AddCell(new Cell().Add(new Paragraph("test")));
-            table.AddCell(new Cell().Add(new Paragraph("test")));
+            table.AddHeaderCell(new Cell().Add(new Paragraph("Birth date:")).SetFont(bold).SetFontSize(10).SetBorder(Border.NO_BORDER));
+            table.AddHeaderCell(new Cell().Add(new Paragraph("birthdate")).SetFontSize(10).SetBorder(Border.NO_BORDER));
+            table.AddCell(new Cell().Add(new Paragraph("Phone:")).SetFontSize(10).SetFont(bold).SetBorder(Border.NO_BORDER));
+            table.AddCell(new Cell().Add(new Paragraph("phone")).SetFontSize(10).SetBorder(Border.NO_BORDER));
+            table.AddCell(new Cell().Add(new Paragraph("E-mail:")).SetFontSize(10).SetFont(bold).SetBorder(Border.NO_BORDER));
+            table.AddCell(new Cell().Add(new Paragraph("email")).SetFontSize(10).SetBorder(Border.NO_BORDER));
 
             document.Add(table);
             document.Close();

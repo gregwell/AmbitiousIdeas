@@ -76,26 +76,35 @@ namespace Tutorial.Chapter01
             // EXPERIENCE TABLE BELOW ----------------------------------
 
             Paragraph[] worktype = new Paragraph[3];
+            Paragraph[] workplace = new Paragraph[3];
 
             for (int i = 0; i < 3; i++)
             {
                 switch (i)
                 {
-                    case 0: worktype[i] = new Paragraph(line[4]); break;
-                    case 1: worktype[i] = new Paragraph(line[7]); break;
-                    case 2: worktype[i] = new Paragraph(line[10]); break;
+                    case 0:
+                        worktype[i] = new Paragraph(line[4]);
+                        workplace[i] = new Paragraph(line[6]);
+                        break;
+
+                    case 1:
+                        worktype[i] = new Paragraph(line[7]);
+                        workplace[i] = new Paragraph(line[9]);
+                        break;
+
+                    case 2:
+                        worktype[i] = new Paragraph(line[10]);
+                        workplace[i] = new Paragraph(line[12]);
+                        break;
                 }
                 worktype[i].SetFontSize(13).SetFont(timesroman);
+                workplace[i].SetFontSize(9).SetFont(timesitalic).SetFontColor(DeviceRgb.BLUE);
             }
 
-            Paragraph workplace1 = new Paragraph(line[6]).SetFontSize(9).SetFont(timesitalic).SetFontColor(DeviceRgb.BLUE);
-            Paragraph workplace2 = new Paragraph(line[9]).SetFontSize(9).SetFont(timesitalic).SetFontColor(DeviceRgb.BLUE);
-            Paragraph workplace3 = new Paragraph(line[12]).SetFontSize(9).SetFont(timesitalic).SetFontColor(DeviceRgb.BLUE);
-
             //WORK INFO
-            Cell work1 = new Cell().Add(worktype[0]).Add(workplace1).SetWidth(250).SetBorder(Border.NO_BORDER);
-            Cell work2 = new Cell().Add(worktype[1]).Add(workplace2).SetWidth(250).SetBorder(Border.NO_BORDER);
-            Cell work3 = new Cell().Add(worktype[2]).Add(workplace3).SetWidth(250).SetBorder(Border.NO_BORDER);
+            Cell work1 = new Cell().Add(worktype[0]).Add(workplace[0]).SetWidth(250).SetBorder(Border.NO_BORDER);
+            Cell work2 = new Cell().Add(worktype[1]).Add(workplace[1]).SetWidth(250).SetBorder(Border.NO_BORDER);
+            Cell work3 = new Cell().Add(worktype[2]).Add(workplace[2]).SetWidth(250).SetBorder(Border.NO_BORDER);
 
             //WORK DATES
             Cell work1_dates = new Cell().Add(new Paragraph(line[5])).SetFont(timesroman).SetFontSize(11).SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT).SetWidth(100).SetBorder(Border.NO_BORDER);

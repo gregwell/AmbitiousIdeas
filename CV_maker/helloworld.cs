@@ -42,6 +42,7 @@ namespace Tutorial.Chapter01
             //photo import
             var photo = new Image(ImageDataFactory.Create(PHOTO));
             photo.SetHeight(90);
+            photo.SetFixedPosition(470, 650);
 
             //reading from the file
             string[] line = new string[5];
@@ -57,18 +58,20 @@ namespace Tutorial.Chapter01
             document.Add(new Paragraph(line[0]).SetFont(timesroman).SetFontSize(20));
             document.Add(new Paragraph("Cirraculum Vitae").SetFontSize(9).SetFont(italic));
 
-            var table = new Table(new float[] { 1, 2 });
+            var person = new Table(new float[] { 1, 2 });
 
-            table.AddHeaderCell(new Cell().Add(new Paragraph("Birth date:")).SetFont(bold).SetFontSize(10).SetBorder(Border.NO_BORDER));
-            table.AddHeaderCell(new Cell().Add(new Paragraph(line[1])).SetFontSize(10).SetBorder(Border.NO_BORDER));
-            table.AddCell(new Cell().Add(new Paragraph("Phone:")).SetFontSize(10).SetFont(bold).SetBorder(Border.NO_BORDER));
-            table.AddCell(new Cell().Add(new Paragraph(line[2])).SetFontSize(10).SetBorder(Border.NO_BORDER));
-            table.AddCell(new Cell().Add(new Paragraph("E-mail:")).SetFontSize(10).SetFont(bold).SetBorder(Border.NO_BORDER));
-            table.AddCell(new Cell().Add(new Paragraph(line[3])).SetFontSize(10).SetBorder(Border.NO_BORDER));
+            person.AddHeaderCell(new Cell().Add(new Paragraph("Birth date:")).SetFont(bold).SetFontSize(10).SetBorder(Border.NO_BORDER));
+            person.AddHeaderCell(new Cell().Add(new Paragraph(line[1])).SetFontSize(10).SetBorder(Border.NO_BORDER));
+            person.AddCell(new Cell().Add(new Paragraph("Phone:")).SetFontSize(10).SetFont(bold).SetBorder(Border.NO_BORDER));
+            person.AddCell(new Cell().Add(new Paragraph(line[2])).SetFontSize(10).SetBorder(Border.NO_BORDER));
+            person.AddCell(new Cell().Add(new Paragraph("E-mail:")).SetFontSize(10).SetFont(bold).SetBorder(Border.NO_BORDER));
+            person.AddCell(new Cell().Add(new Paragraph(line[3])).SetFontSize(10).SetBorder(Border.NO_BORDER));
 
-            document.Add(new Paragraph().Add(photo));
+            var experience = new Table(new float[] { 2, 5, 2 });
 
-            document.Add(table);
+            document.Add(person);
+            document.Add(experience);
+            document.Add(photo);
             document.Close();
         }
     }

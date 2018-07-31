@@ -77,58 +77,50 @@ namespace Tutorial.Chapter01
 
             Paragraph[] worktype = new Paragraph[3];
             Paragraph[] workplace = new Paragraph[3];
+            Cell[] work = new Cell[3];
+            Cell[] work_dates = new Cell[3];
+
+            //TABLE STRUCTURES
+            var experience = new Table(new float[] { 2, 5, 2 });
+
+            // LEFT SIDE (TITLE OR EMPTY)
+            Cell empty = new Cell().Add(new Paragraph("")).SetFont(timesroman).SetFontSize(15).SetBorder(Border.NO_BORDER).SetWidth(100);
+            Cell title_experience = new Cell().Add(new Paragraph("Experience:")).SetFont(timesroman).SetFontSize(15).SetBorder(Border.NO_BORDER).SetWidth(100);
 
             for (int i = 0; i < 3; i++)
             {
                 switch (i)
                 {
                     case 0:
+                        experience.AddHeaderCell(title_experience);
                         worktype[i] = new Paragraph(line[4]);
+                        work_dates[i] = new Cell().Add(new Paragraph(line[5]));
                         workplace[i] = new Paragraph(line[6]);
                         break;
 
                     case 1:
+                        experience.AddCell(empty);
                         worktype[i] = new Paragraph(line[7]);
+                        work_dates[i] = new Cell().Add(new Paragraph(line[8]));
                         workplace[i] = new Paragraph(line[9]);
                         break;
 
                     case 2:
+                        experience.AddCell(empty);
                         worktype[i] = new Paragraph(line[10]);
+                        work_dates[i] = new Cell().Add(new Paragraph(line[11]));
                         workplace[i] = new Paragraph(line[12]);
                         break;
                 }
+                experience.AddHeaderCell(work[i]);
+                experience.AddHeaderCell(work_dates[i]);
+
                 worktype[i].SetFontSize(13).SetFont(timesroman);
                 workplace[i].SetFontSize(9).SetFont(timesitalic).SetFontColor(DeviceRgb.BLUE);
+
+                work[i] = new Cell().Add(worktype[i]).Add(workplace[i]).SetWidth(250).SetBorder(Border.NO_BORDER);
+                work_dates[i].SetFont(timesroman).SetFontSize(11).SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT).SetWidth(100).SetBorder(Border.NO_BORDER);
             }
-
-            //WORK INFO
-            Cell work1 = new Cell().Add(worktype[0]).Add(workplace[0]).SetWidth(250).SetBorder(Border.NO_BORDER);
-            Cell work2 = new Cell().Add(worktype[1]).Add(workplace[1]).SetWidth(250).SetBorder(Border.NO_BORDER);
-            Cell work3 = new Cell().Add(worktype[2]).Add(workplace[2]).SetWidth(250).SetBorder(Border.NO_BORDER);
-
-            //WORK DATES
-            Cell work1_dates = new Cell().Add(new Paragraph(line[5])).SetFont(timesroman).SetFontSize(11).SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT).SetWidth(100).SetBorder(Border.NO_BORDER);
-            Cell work2_dates = new Cell().Add(new Paragraph(line[8])).SetFont(timesroman).SetFontSize(11).SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT).SetWidth(100).SetBorder(Border.NO_BORDER);
-            Cell work3_dates = new Cell().Add(new Paragraph(line[11])).SetFont(timesroman).SetFontSize(11).SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT).SetWidth(100).SetBorder(Border.NO_BORDER);
-
-            // LEFT SIDE
-            Cell empty = new Cell().Add(new Paragraph("")).SetFont(timesroman).SetFontSize(15).SetBorder(Border.NO_BORDER).SetWidth(100);
-            Cell title_experience = new Cell().Add(new Paragraph("Experience:")).SetFont(timesroman).SetFontSize(15).SetBorder(Border.NO_BORDER).SetWidth(100);
-
-            //TABLE STRUCTURES
-            var experience = new Table(new float[] { 2, 5, 2 });
-
-            experience.AddHeaderCell(title_experience);
-            experience.AddHeaderCell(work1);
-            experience.AddHeaderCell(work1_dates);
-
-            experience.AddCell(empty);
-            experience.AddCell(work2);
-            experience.AddCell(work2_dates);
-
-            experience.AddCell(empty);
-            experience.AddCell(work3);
-            experience.AddCell(work3_dates);
 
             // EXPERIENCE ABOVE ----------------------------------------
 

@@ -73,35 +73,31 @@ namespace Tutorial.Chapter01
             person.AddCell(new Cell().Add(new Paragraph("E-mail:")).SetFontSize(10).SetFont(bold).SetBorder(Border.NO_BORDER));
             person.AddCell(new Cell().Add(new Paragraph(line[3])).SetFontSize(10).SetBorder(Border.NO_BORDER));
 
-            // EXPERIENCE BELOW ----------------------------------
-            string[] worktype = new string[15];
-            string[] workplace = new string[15];
+            // EXPERIENCE TABLE BELOW ----------------------------------
 
-            for (var i = 0; i < 10; i += 3)
-            {
-                worktype[i] = line[i + 4];
-                workplace[i] = line[i + 6];
-            }
+            Paragraph worktype1 = new Paragraph(line[4]).SetFontSize(13).SetFont(timesroman);
+            Paragraph worktype2 = new Paragraph(line[7]).SetFontSize(13).SetFont(timesroman);
+            Paragraph worktype3 = new Paragraph(line[10]).SetFontSize(13).SetFont(timesroman);
 
-            Paragraph pworktype1 = new Paragraph(worktype[0]).SetFontSize(13).SetFont(timesroman);
-            Paragraph pworktype2 = new Paragraph(worktype[3]).SetFontSize(13).SetFont(timesroman);
-            Paragraph pworktype3 = new Paragraph(worktype[6]).SetFontSize(13).SetFont(timesroman);
+            Paragraph workplace1 = new Paragraph(line[6]).SetFontSize(9).SetFont(timesitalic).SetFontColor(DeviceRgb.BLUE);
+            Paragraph workplace2 = new Paragraph(line[9]).SetFontSize(9).SetFont(timesitalic).SetFontColor(DeviceRgb.BLUE);
+            Paragraph workplace3 = new Paragraph(line[12]).SetFontSize(9).SetFont(timesitalic).SetFontColor(DeviceRgb.BLUE);
 
-            Paragraph pworkplace1 = new Paragraph(workplace[0]).SetFontSize(9).SetFont(timesitalic).SetFontColor(DeviceRgb.BLUE);
-            Paragraph pworkplace2 = new Paragraph(workplace[3]).SetFontSize(9).SetFont(timesitalic).SetFontColor(DeviceRgb.BLUE);
-            Paragraph pworkplace3 = new Paragraph(workplace[6]).SetFontSize(9).SetFont(timesitalic).SetFontColor(DeviceRgb.BLUE);
+            //WORK INFO
+            Cell work1 = new Cell().Add(worktype1).Add(workplace1).SetWidth(250).SetBorder(Border.NO_BORDER);
+            Cell work2 = new Cell().Add(worktype2).Add(workplace2).SetWidth(250).SetBorder(Border.NO_BORDER);
+            Cell work3 = new Cell().Add(worktype3).Add(workplace3).SetWidth(250).SetBorder(Border.NO_BORDER);
 
-            Cell work1 = new Cell().Add(pworktype1).Add(pworkplace1).SetWidth(250).SetBorder(Border.NO_BORDER);
-            Cell work2 = new Cell().Add(pworktype2).Add(pworkplace2).SetWidth(250).SetBorder(Border.NO_BORDER);
-            Cell work3 = new Cell().Add(pworktype3).Add(pworkplace3).SetWidth(250).SetBorder(Border.NO_BORDER);
-
+            //WORK DATES
             Cell work1_dates = new Cell().Add(new Paragraph(line[5])).SetFont(timesroman).SetFontSize(11).SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT).SetWidth(100).SetBorder(Border.NO_BORDER);
             Cell work2_dates = new Cell().Add(new Paragraph(line[8])).SetFont(timesroman).SetFontSize(11).SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT).SetWidth(100).SetBorder(Border.NO_BORDER);
             Cell work3_dates = new Cell().Add(new Paragraph(line[11])).SetFont(timesroman).SetFontSize(11).SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT).SetWidth(100).SetBorder(Border.NO_BORDER);
 
+            // LEFT SIDE
             Cell empty = new Cell().Add(new Paragraph("")).SetFont(timesroman).SetFontSize(15).SetBorder(Border.NO_BORDER).SetWidth(100);
             Cell title_experience = new Cell().Add(new Paragraph("Experience:")).SetFont(timesroman).SetFontSize(15).SetBorder(Border.NO_BORDER).SetWidth(100);
 
+            //TABLE STRUCTURES
             var experience = new Table(new float[] { 2, 5, 2 });
 
             experience.AddHeaderCell(title_experience);
@@ -132,6 +128,11 @@ namespace Tutorial.Chapter01
 
             document.Add(photo);
             document.Close();
+        }
+
+        private static string ReturnBlueText(string name)
+        {
+            return name;
         }
     }
 }

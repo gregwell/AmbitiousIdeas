@@ -10,6 +10,7 @@ using iText.Layout.Element;
 using iText.IO.Font.Constants;
 using iText.Layout.Borders;
 using iText.IO.Image;
+using iText.Kernel.Pdf.Canvas.Draw;
 
 namespace Tutorial.Chapter01
 {
@@ -42,11 +43,10 @@ namespace Tutorial.Chapter01
             //photo import
             var photo = new Image(ImageDataFactory.Create(PHOTO));
             photo.SetHeight(90);
-            photo.SetFixedPosition(470, 650);
+            photo.SetFixedPosition(450, 650);
 
             //reading from the file
-            string[] line = new string[5];
-
+            string[] line = new string[19];
             using (var reader = new StreamReader("D:/data.txt"))
             {
                 for (int i = 0; i < line.Length; i++)
@@ -54,6 +54,9 @@ namespace Tutorial.Chapter01
                     line[i] = reader.ReadLine();
                 }
             }
+
+            SolidLine solidline = new SolidLine(2f);
+            LineSeparator separator = new LineSeparator(solidline);
 
             document.Add(new Paragraph(line[0]).SetFont(timesroman).SetFontSize(20));
             document.Add(new Paragraph("Cirraculum Vitae").SetFontSize(9).SetFont(italic));
@@ -68,9 +71,30 @@ namespace Tutorial.Chapter01
             person.AddCell(new Cell().Add(new Paragraph(line[3])).SetFontSize(10).SetBorder(Border.NO_BORDER));
 
             var experience = new Table(new float[] { 2, 5, 2 });
+            experience.AddHeaderCell(new Cell().Add(new Paragraph("Experience:")).SetFont(timesroman).SetFontSize(15).SetBorder(Border.NO_BORDER).SetWidth(100));
+            experience.AddHeaderCell(new Cell().Add(new Paragraph(line[4] + "\n" + line[6])).SetFont(timesroman).SetFontSize(14).SetWidth(250).SetBorder(Border.NO_BORDER));
+            experience.AddHeaderCell(new Cell().Add(new Paragraph(line[5])).SetFont(timesroman).SetFontSize(12).SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT).SetWidth(100).SetBorder(Border.NO_BORDER));
+
+            experience.AddCell(new Cell().Add(new Paragraph("")).SetFont(timesroman).SetFontSize(15).SetBorder(Border.NO_BORDER).SetWidth(100));
+            experience.AddCell(new Cell().Add(new Paragraph(line[7] + "\n" + line[9])).SetFont(timesroman).SetFontSize(14).SetWidth(250).SetBorder(Border.NO_BORDER));
+            experience.AddCell(new Cell().Add(new Paragraph(line[8])).SetFont(timesroman).SetFontSize(12).SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT).SetWidth(100).SetBorder(Border.NO_BORDER));
+
+            experience.AddCell(new Cell().Add(new Paragraph("")).SetFont(timesroman).SetFontSize(15).SetBorder(Border.NO_BORDER).SetWidth(100));
+            experience.AddCell(new Cell().Add(new Paragraph(line[10] + "\n" + line[12])).SetFont(timesroman).SetFontSize(14).SetWidth(250).SetBorder(Border.NO_BORDER));
+            experience.AddCell(new Cell().Add(new Paragraph(line[11])).SetFont(timesroman).SetFontSize(12).SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT).SetWidth(100).SetBorder(Border.NO_BORDER));
+
+            var education = new Table(new float[] { 2, 5, 2 });
+            education.AddHeaderCell(new Cell().Add(new Paragraph("Education:")).SetFont(timesroman).SetFontSize(15).SetBorder(Border.NO_BORDER).SetWidth(100));
+            education.AddHeaderCell(new Cell().Add(new Paragraph(line[13] + "\n" + line[15])).SetFont(timesroman).SetFontSize(14).SetWidth(250).SetBorder(Border.NO_BORDER));
+            education.AddHeaderCell(new Cell().Add(new Paragraph(line[14])).SetFont(timesroman).SetFontSize(12).SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT).SetWidth(100).SetBorder(Border.NO_BORDER));
 
             document.Add(person);
+            document.Add(new Paragraph("\n"));
+            document.Add(separator);
             document.Add(experience);
+            document.Add(separator);
+            document.Add(education);
+
             document.Add(photo);
             document.Close();
         }

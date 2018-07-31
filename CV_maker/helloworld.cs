@@ -73,14 +73,23 @@ namespace Tutorial.Chapter01
             person.AddCell(new Cell().Add(new Paragraph("E-mail:")).SetFontSize(10).SetFont(bold).SetBorder(Border.NO_BORDER));
             person.AddCell(new Cell().Add(new Paragraph(line[3])).SetFontSize(10).SetBorder(Border.NO_BORDER));
 
-            Paragraph worktype1 = new Paragraph(line[4]).SetFontSize(13).SetFont(timesroman);
-            Paragraph workplace1 = new Paragraph(line[6]).SetFontSize(9).SetFont(timesitalic).SetFontColor(DeviceRgb.BLUE);
+            // EXPERIENCE BELOW ----------------------------------
+            Paragraph[] worktype = new Paragraph[3];
+            Paragraph[] workplace = new Paragraph[3];
 
-            Paragraph worktype2 = new Paragraph(line[7]).SetFontSize(13).SetFont(timesroman);
-            Paragraph workplace2 = new Paragraph(line[9]).SetFontSize(9).SetFont(timesitalic).SetFontColor(DeviceRgb.BLUE);
+            for (var i = 0; i < 3; i++)
+            {
+                worktype[0] = new Paragraph(line[i + 4]).SetFontSize(13).SetFont(timesroman);
+            }
 
-            Paragraph worktype3 = new Paragraph(line[10]).SetFontSize(13).SetFont(timesroman);
-            Paragraph workplace3 = new Paragraph(line[12]).SetFontSize(9).SetFont(timesitalic).SetFontColor(DeviceRgb.BLUE);
+            //Paragraph worktype1 = new Paragraph(line[4]).SetFontSize(13).SetFont(timesroman);
+            //Paragraph workplace1 = new Paragraph(line[6]).SetFontSize(9).SetFont(timesitalic).SetFontColor(DeviceRgb.BLUE);
+
+            //Paragraph worktype2 = new Paragraph(line[7]).SetFontSize(13).SetFont(timesroman);
+            //Paragraph workplace2 = new Paragraph(line[9]).SetFontSize(9).SetFont(timesitalic).SetFontColor(DeviceRgb.BLUE);
+
+            //Paragraph worktype3 = new Paragraph(line[10]).SetFontSize(13).SetFont(timesroman);
+            //Paragraph workplace3 = new Paragraph(line[12]).SetFontSize(9).SetFont(timesitalic).SetFontColor(DeviceRgb.BLUE);
 
             var experience = new Table(new float[] { 2, 5, 2 });
             experience.AddHeaderCell(new Cell().Add(new Paragraph("Experience:")).SetFont(timesroman).SetFontSize(15).SetBorder(Border.NO_BORDER).SetWidth(100));
@@ -94,6 +103,8 @@ namespace Tutorial.Chapter01
             experience.AddCell(new Cell().Add(new Paragraph("")).SetFont(timesroman).SetFontSize(15).SetBorder(Border.NO_BORDER).SetWidth(100));
             experience.AddCell(new Cell().Add(worktype3).Add(workplace3).SetWidth(250).SetBorder(Border.NO_BORDER));
             experience.AddCell(new Cell().Add(new Paragraph(line[11])).SetFont(timesroman).SetFontSize(11).SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT).SetWidth(100).SetBorder(Border.NO_BORDER));
+
+            // EXPERIENCE ABOVE ----------------------------------------
 
             var education = new Table(new float[] { 2, 5, 2 });
             education.AddHeaderCell(new Cell().Add(new Paragraph("Education:")).SetFont(timesroman).SetFontSize(15).SetBorder(Border.NO_BORDER).SetWidth(100));

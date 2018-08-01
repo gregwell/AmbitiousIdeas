@@ -121,8 +121,8 @@ namespace Tutorial.Chapter01
             Cell[] work = new Cell[3];
             Cell[] work_dates = new Cell[3];
 
-            Paragraph[] pschoolname = new Paragraph[2];
-            Paragraph[] pschooltype = new Paragraph[2];
+            Paragraph[] pschoolname = new Paragraph[3];
+            Paragraph[] pschoolplace = new Paragraph[3];
             Cell[] school = new Cell[3];
             Cell[] school_dates = new Cell[3];
 
@@ -147,6 +147,7 @@ namespace Tutorial.Chapter01
             //experience table constructor
             for (int i = 0; i < 3; i++)
             {
+                //work
                 pworkname[i] = new Paragraph(workname[i]);
                 work_dates[i] = new Cell().Add(new Paragraph(workdate[i]));
                 pworkplace[i] = new Paragraph(workplace[i]);
@@ -157,17 +158,40 @@ namespace Tutorial.Chapter01
                 work[i] = new Cell().Add(pworkname[i]).Add(pworkplace[i]).SetWidth(230).SetBorder(Border.NO_BORDER);
                 work_dates[i].SetFont(timesroman).SetFontSize(11).SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT).SetWidth(120).SetBorder(Border.NO_BORDER);
 
+                //school
+                pschoolname[i] = new Paragraph(schoolname[i]);
+                school_dates[i] = new Cell().Add(new Paragraph(schooldate[i]));
+                pschoolplace[i] = new Paragraph(schoolplace[i]);
+
+                pschoolname[i].SetFontSize(13).SetFont(timesroman);
+                pschoolplace[i].SetFontSize(10).SetFont(timesitalic).SetFontColor(DeviceRgb.BLUE);
+
+                school[i] = new Cell().Add(pschoolname[i]).Add(pschoolplace[i]).SetWidth(230).SetBorder(Border.NO_BORDER);
+                school_dates[i].SetFont(timesroman).SetFontSize(11).SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT).SetWidth(120).SetBorder(Border.NO_BORDER);
+
                 if (i == 0)
                 {
+                    //work
                     experience.AddHeaderCell(title[0]);
                     experience.AddHeaderCell(work[0]);
                     experience.AddHeaderCell(work_dates[0]);
+
+                    //school
+                    education.AddHeaderCell(title[1]);
+                    education.AddHeaderCell(work[0]);
+                    education.AddHeaderCell(work_dates[0]);
                 }
                 else
                 {
+                    //work
                     experience.AddCell(empty);
-                    experience.AddCell(work[i]);
-                    experience.AddCell(work_dates[i]);
+                    experience.AddCell(school[i]);
+                    experience.AddCell(school_dates[i]);
+
+                    //school
+                    education.AddCell(empty);
+                    education.AddCell(school[i]);
+                    education.AddCell(school_dates[i]);
                 }
             }
 

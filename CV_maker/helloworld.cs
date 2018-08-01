@@ -90,10 +90,10 @@ namespace Tutorial.Chapter01
             Cell[] work = new Cell[3];
             Cell[] work_dates = new Cell[3];
 
-            //TABLE STRUCTURES
+            //table structures
             var experience = new Table(new float[] { 2, 5, 2 });
 
-            // LEFT SIDE (TITLE OR EMPTY)
+            // left side / title or empty /
             Cell empty = new Cell().Add(new Paragraph("")).SetFont(timesroman).SetFontSize(15).SetBorder(Border.NO_BORDER).SetWidth(100);
             Cell title_experience = new Cell().Add(new Paragraph("Experience:")).SetFont(timesroman).SetFontSize(15).SetBorder(Border.NO_BORDER).SetWidth(100);
 
@@ -126,8 +126,8 @@ namespace Tutorial.Chapter01
                 worktype[i].SetFontSize(13).SetFont(timesroman);
                 workplace[i].SetFontSize(9).SetFont(timesitalic).SetFontColor(DeviceRgb.BLUE);
 
-                work[i] = new Cell().Add(worktype[i]).Add(workplace[i]).SetWidth(250).SetBorder(Border.NO_BORDER);
-                work_dates[i].SetFont(timesroman).SetFontSize(11).SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT).SetWidth(100).SetBorder(Border.NO_BORDER);
+                work[i] = new Cell().Add(worktype[i]).Add(workplace[i]).SetWidth(230).SetBorder(Border.NO_BORDER);
+                work_dates[i].SetFont(timesroman).SetFontSize(11).SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT).SetWidth(120).SetBorder(Border.NO_BORDER);
 
                 if (i == 0)
                 {

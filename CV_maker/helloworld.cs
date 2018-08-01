@@ -169,6 +169,8 @@ namespace Tutorial.Chapter01
                 school[i] = new Cell().Add(pschoolname[i]).Add(pschoolplace[i]).SetWidth(230).SetBorder(Border.NO_BORDER);
                 school_dates[i].SetFont(timesroman).SetFontSize(11).SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT).SetWidth(120).SetBorder(Border.NO_BORDER);
 
+                //the problem which occure is about exposing only 1 and 2 record ( data doesnt matter) / exposing 1 and 3 record is fine as well.
+
                 if (i == 0)
                 {
                     //work
@@ -181,6 +183,19 @@ namespace Tutorial.Chapter01
                     education.AddHeaderCell(school[0]);
                     education.AddHeaderCell(school_dates[0]);
                 }
+                else if (i == 1)
+                {
+                    //work
+                    experience.AddCell(empty);
+                    experience.AddCell(work[i]);
+                    experience.AddCell(work_dates[i]);
+
+                    //school
+
+                    //education.AddCell(empty);
+                    // education.AddCell(school[i]);
+                    // education.AddCell(school_dates[i]);
+                }
                 else
                 {
                     //work
@@ -189,12 +204,10 @@ namespace Tutorial.Chapter01
                     experience.AddCell(work_dates[i]);
 
                     //school
-                    if (schoolplace[i] == "no data")
-                    {
-                        education.AddCell(empty);
-                        education.AddCell(school[i]);
-                        education.AddCell(school_dates[i]);
-                    }
+
+                    education.AddCell(empty);
+                    education.AddCell(school[i]);
+                    education.AddCell(school_dates[i]);
                 }
             }
 

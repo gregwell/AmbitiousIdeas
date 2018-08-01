@@ -66,12 +66,22 @@ namespace Tutorial.Chapter01
 
             var person = new Table(new float[] { 1, 2 });
 
-            person.AddHeaderCell(new Cell().Add(new Paragraph("Birth date:")).SetFont(bold).SetFontSize(10).SetBorder(Border.NO_BORDER));
-            person.AddHeaderCell(new Cell().Add(new Paragraph(line[1])).SetFontSize(10).SetBorder(Border.NO_BORDER));
-            person.AddCell(new Cell().Add(new Paragraph("Phone:")).SetFontSize(10).SetFont(bold).SetBorder(Border.NO_BORDER));
-            person.AddCell(new Cell().Add(new Paragraph(line[2])).SetFontSize(10).SetBorder(Border.NO_BORDER));
-            person.AddCell(new Cell().Add(new Paragraph("E-mail:")).SetFontSize(10).SetFont(bold).SetBorder(Border.NO_BORDER));
-            person.AddCell(new Cell().Add(new Paragraph(line[3])).SetFontSize(10).SetBorder(Border.NO_BORDER));
+            Cell[] details = new Cell[3];
+            Cell[] details_data = new Cell[3];
+
+            for (int i = 0; i < 3; i++)
+            {
+                switch (i)
+                {
+                    case 0: details[i] = new Cell().Add(new Paragraph("Birth date:")); break;
+                    case 1: details[i] = new Cell().Add(new Paragraph("Phone")); break;
+                    case 2: details[i] = new Cell().Add(new Paragraph("E-mail:")); break;
+                }
+                details[i].SetFont(bold).SetFontSize(10).SetBorder(Border.NO_BORDER);
+                details_data[i] = new Cell().Add(new Paragraph(line[i + 1])).SetFontSize(10).SetBorder(Border.NO_BORDER);
+                person.AddCell(details[i]);
+                person.AddCell(details_data[i]);
+            }
 
             // EXPERIENCE TABLE BELOW ----------------------------------
 
@@ -112,14 +122,23 @@ namespace Tutorial.Chapter01
                         workplace[i] = new Paragraph(line[12]);
                         break;
                 }
-                experience.AddHeaderCell(work[i]);
-                experience.AddHeaderCell(work_dates[i]);
 
                 worktype[i].SetFontSize(13).SetFont(timesroman);
                 workplace[i].SetFontSize(9).SetFont(timesitalic).SetFontColor(DeviceRgb.BLUE);
 
                 work[i] = new Cell().Add(worktype[i]).Add(workplace[i]).SetWidth(250).SetBorder(Border.NO_BORDER);
                 work_dates[i].SetFont(timesroman).SetFontSize(11).SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT).SetWidth(100).SetBorder(Border.NO_BORDER);
+
+                if (i == 0)
+                {
+                    experience.AddHeaderCell(work[i]);
+                    experience.AddHeaderCell(work_dates[i]);
+                }
+                else
+                {
+                    experience.AddCell(work[i]);
+                    experience.AddCell(work_dates[i]);
+                }
             }
 
             // EXPERIENCE ABOVE ----------------------------------------

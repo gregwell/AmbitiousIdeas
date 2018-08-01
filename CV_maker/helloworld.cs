@@ -49,7 +49,7 @@ namespace Tutorial.Chapter01
             photo.SetFixedPosition(450, 650);
 
             //reading from the file
-            string[] line = new string[19];
+            string[] line = new string[20];
             using (var reader = new StreamReader("D:/data.txt"))
             {
                 for (int i = 0; i < line.Length; i++)
@@ -142,11 +142,62 @@ namespace Tutorial.Chapter01
             }
 
             // EXPERIENCE ABOVE ----------------------------------------
+            // school TABLE BELOW ----------------------------------
 
+            Paragraph[] schoolname = new Paragraph[2];
+            Paragraph[] schooltype = new Paragraph[2];
+            Cell[] school = new Cell[2];
+            Cell[] school_dates = new Cell[2];
+
+            //table structures
             var education = new Table(new float[] { 2, 5, 2 });
-            education.AddHeaderCell(new Cell().Add(new Paragraph("Education:")).SetFont(timesroman).SetFontSize(15).SetBorder(Border.NO_BORDER).SetWidth(100));
-            education.AddHeaderCell(new Cell().Add(new Paragraph(line[13] + "\n" + line[15])).SetFont(timesroman).SetFontSize(14).SetWidth(250).SetBorder(Border.NO_BORDER));
-            education.AddHeaderCell(new Cell().Add(new Paragraph(line[14])).SetFont(timesroman).SetFontSize(12).SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT).SetWidth(100).SetBorder(Border.NO_BORDER));
+
+            // left side / title or empty /
+            Cell title_education = new Cell().Add(new Paragraph("Education:")).SetFont(timesroman).SetFontSize(15).SetBorder(Border.NO_BORDER).SetWidth(100);
+
+            for (int i = 0; i < 2; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        education.AddHeaderCell(title_education);
+                        schoolname[i] = new Paragraph(line[13]);
+                        school_dates[i] = new Cell().Add(new Paragraph(line[14]));
+                        schooltype[i] = new Paragraph(line[15]);
+                        break;
+
+                    case 1:
+                        education.AddCell(empty);
+                        schoolname[i] = new Paragraph(line[16]);
+                        school_dates[i] = new Cell().Add(new Paragraph(line[17]));
+                        schooltype[i] = new Paragraph(line[18]);
+                        break;
+                }
+
+                schoolname[i].SetFontSize(12).SetFont(timesroman);
+                schooltype[i].SetFontSize(9).SetFont(timesitalic).SetFontColor(DeviceRgb.BLUE);
+
+                school[i] = new Cell().Add(schoolname[i]).Add(schooltype[i]).SetWidth(230).SetBorder(Border.NO_BORDER);
+                school_dates[i].SetFont(timesroman).SetFontSize(11).SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT).SetWidth(120).SetBorder(Border.NO_BORDER);
+
+                if (i == 0)
+                {
+                    education.AddHeaderCell(school[i]);
+                    education.AddHeaderCell(school_dates[i]);
+                }
+                else
+                {
+                    education.AddCell(school[i]);
+                    education.AddCell(school_dates[i]);
+                }
+            }
+
+            // school ABOVE ----------------------------------------
+
+            //var education = new Table(new float[] { 2, 5, 2 });
+            //education.AddHeaderCell(new Cell().Add(new Paragraph("Education:")).SetFont(timesroman).SetFontSize(15).SetBorder(Border.NO_BORDER).SetWidth(100));
+            //education.AddHeaderCell(new Cell().Add(new Paragraph(line[13] + "\n" + line[15])).SetFont(timesroman).SetFontSize(14).SetWidth(250).SetBorder(Border.NO_BORDER));
+            //education.AddHeaderCell(new Cell().Add(new Paragraph(line[14])).SetFont(timesroman).SetFontSize(12).SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT).SetWidth(100).SetBorder(Border.NO_BORDER));
 
             document.Add(person);
             document.Add(new Paragraph("\n"));
@@ -154,6 +205,7 @@ namespace Tutorial.Chapter01
             document.Add(experience);
             document.Add(separator);
             document.Add(education);
+            document.Add(separator);
 
             document.Add(photo);
             document.Close();

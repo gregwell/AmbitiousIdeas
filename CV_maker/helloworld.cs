@@ -90,19 +90,36 @@ namespace Tutorial.Chapter01
             Cell[] work = new Cell[3];
             Cell[] work_dates = new Cell[3];
 
+            Paragraph[] schoolname = new Paragraph[2];
+            Paragraph[] schooltype = new Paragraph[2];
+            Cell[] school = new Cell[2];
+            Cell[] school_dates = new Cell[2];
+
             //table structures
             var experience = new Table(new float[] { 2, 5, 2 });
+            var education = new Table(new float[] { 2, 5, 2 });
 
             // left side / title or empty /
             Cell empty = new Cell().Add(new Paragraph("")).SetFont(timesroman).SetFontSize(15).SetBorder(Border.NO_BORDER).SetWidth(100);
-            Cell title_experience = new Cell().Add(new Paragraph("Experience:")).SetFont(timesroman).SetFontSize(15).SetBorder(Border.NO_BORDER).SetWidth(100);
+            Cell[] title = new Cell[2];
 
+            for (int i = 0; i < 2; i++)
+            {
+                switch (i)
+                {
+                    case 1: title[i] = new Cell().Add(new Paragraph("Experience:")); break;
+                    case 2: title[i] = new Cell().Add(new Paragraph("Education")); break;
+                }
+                title[i].SetFont(timesroman).SetFontSize(15).SetBorder(Border.NO_BORDER).SetWidth(100);
+            }
+
+            //experience table constructor
             for (int i = 0; i < 3; i++)
             {
                 switch (i)
                 {
                     case 0:
-                        experience.AddHeaderCell(title_experience);
+                        experience.AddHeaderCell(title[0]);
                         worktype[i] = new Paragraph(line[4]);
                         work_dates[i] = new Cell().Add(new Paragraph(line[5]));
                         workplace[i] = new Paragraph(line[6]);
@@ -124,7 +141,7 @@ namespace Tutorial.Chapter01
                 }
 
                 worktype[i].SetFontSize(13).SetFont(timesroman);
-                workplace[i].SetFontSize(9).SetFont(timesitalic).SetFontColor(DeviceRgb.BLUE);
+                workplace[i].SetFontSize(10).SetFont(timesitalic).SetFontColor(DeviceRgb.BLUE);
 
                 work[i] = new Cell().Add(worktype[i]).Add(workplace[i]).SetWidth(230).SetBorder(Border.NO_BORDER);
                 work_dates[i].SetFont(timesroman).SetFontSize(11).SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT).SetWidth(120).SetBorder(Border.NO_BORDER);
@@ -144,23 +161,14 @@ namespace Tutorial.Chapter01
             // EXPERIENCE ABOVE ----------------------------------------
             // school TABLE BELOW ----------------------------------
 
-            Paragraph[] schoolname = new Paragraph[2];
-            Paragraph[] schooltype = new Paragraph[2];
-            Cell[] school = new Cell[2];
-            Cell[] school_dates = new Cell[2];
-
-            //table structures
-            var education = new Table(new float[] { 2, 5, 2 });
-
             // left side / title or empty /
-            Cell title_education = new Cell().Add(new Paragraph("Education:")).SetFont(timesroman).SetFontSize(15).SetBorder(Border.NO_BORDER).SetWidth(100);
 
             for (int i = 0; i < 2; i++)
             {
                 switch (i)
                 {
                     case 0:
-                        education.AddHeaderCell(title_education);
+                        education.AddHeaderCell(title[1]);
                         schoolname[i] = new Paragraph(line[13]);
                         school_dates[i] = new Cell().Add(new Paragraph(line[14]));
                         schooltype[i] = new Paragraph(line[15]);
@@ -175,7 +183,7 @@ namespace Tutorial.Chapter01
                 }
 
                 schoolname[i].SetFontSize(12).SetFont(timesroman);
-                schooltype[i].SetFontSize(9).SetFont(timesitalic).SetFontColor(DeviceRgb.BLUE);
+                schooltype[i].SetFontSize(10).SetFont(timesitalic).SetFontColor(DeviceRgb.BLUE);
 
                 school[i] = new Cell().Add(schoolname[i]).Add(schooltype[i]).SetWidth(230).SetBorder(Border.NO_BORDER);
                 school_dates[i].SetFont(timesroman).SetFontSize(11).SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT).SetWidth(120).SetBorder(Border.NO_BORDER);

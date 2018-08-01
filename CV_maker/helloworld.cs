@@ -178,8 +178,8 @@ namespace Tutorial.Chapter01
 
                     //school
                     education.AddHeaderCell(title[1]);
-                    education.AddHeaderCell(work[0]);
-                    education.AddHeaderCell(work_dates[0]);
+                    education.AddHeaderCell(school[0]);
+                    education.AddHeaderCell(school_dates[0]);
                 }
                 else
                 {

@@ -49,7 +49,7 @@ namespace Tutorial.Chapter01
             photo.SetFixedPosition(450, 650);
 
             //reading from the file
-            string[] line = new string[20];
+            string[] line = new string[26];
             using (var reader = new StreamReader("D:/data.txt"))
             {
                 for (int i = 0; i < line.Length; i++)
@@ -57,6 +57,36 @@ namespace Tutorial.Chapter01
                     line[i] = reader.ReadLine();
                 }
             }
+
+            string name = line[0];
+            string birthdate = line[1];
+            string phone = line[2];
+            string email = line[3];
+            string[] workname = new string[3];
+            workname[0] = line[4];
+            workname[1] = line[7];
+            workname[2] = line[10];
+            string[] workdate = new string[3];
+            workdate[0] = line[5];
+            workdate[1] = line[8];
+            workdate[2] = line[11];
+            string[] workplace = new string[3];
+            workplace[0] = line[6];
+            workplace[1] = line[9];
+            workplace[2] = line[12];
+
+            string[] schoolname = new string[3];
+            schoolname[0] = line[13];
+            schoolname[1] = line[16];
+            schoolname[2] = line[19];
+            string[] schooldate = new string[3];
+            schooldate[0] = line[14];
+            schooldate[1] = line[17];
+            schooldate[2] = line[20];
+            string[] schoolplace = new string[3];
+            schoolplace[0] = line[15];
+            schoolplace[1] = line[18];
+            schoolplace[2] = line[21];
 
             SolidLine solidline = new SolidLine(2f);
             LineSeparator separator = new LineSeparator(solidline);
@@ -85,13 +115,13 @@ namespace Tutorial.Chapter01
 
             // EXPERIENCE TABLE BELOW ----------------------------------
 
-            Paragraph[] worktype = new Paragraph[3];
-            Paragraph[] workplace = new Paragraph[3];
+            Paragraph[] pworkname = new Paragraph[3];
+            Paragraph[] pworkplace = new Paragraph[3];
             Cell[] work = new Cell[3];
             Cell[] work_dates = new Cell[3];
 
-            Paragraph[] schoolname = new Paragraph[2];
-            Paragraph[] schooltype = new Paragraph[2];
+            Paragraph[] pschoolname = new Paragraph[2];
+            Paragraph[] pschooltype = new Paragraph[2];
             Cell[] school = new Cell[2];
             Cell[] school_dates = new Cell[2];
 
@@ -107,8 +137,8 @@ namespace Tutorial.Chapter01
             {
                 switch (i)
                 {
-                    case 1: title[i] = new Cell().Add(new Paragraph("Experience:")); break;
-                    case 2: title[i] = new Cell().Add(new Paragraph("Education")); break;
+                    case 0: title[i] = new Cell().Add(new Paragraph("Experience:")); break;
+                    case 1: title[i] = new Cell().Add(new Paragraph("Education")); break;
                 }
                 title[i].SetFont(timesroman).SetFontSize(15).SetBorder(Border.NO_BORDER).SetWidth(100);
             }
@@ -120,30 +150,30 @@ namespace Tutorial.Chapter01
                 {
                     case 0:
                         experience.AddHeaderCell(title[0]);
-                        worktype[i] = new Paragraph(line[4]);
+                        pworkname[i] = new Paragraph(line[4]);
                         work_dates[i] = new Cell().Add(new Paragraph(line[5]));
-                        workplace[i] = new Paragraph(line[6]);
+                        pworkplace[i] = new Paragraph(line[6]);
                         break;
 
                     case 1:
                         experience.AddCell(empty);
-                        worktype[i] = new Paragraph(line[7]);
+                        pworkname[i] = new Paragraph(line[7]);
                         work_dates[i] = new Cell().Add(new Paragraph(line[8]));
-                        workplace[i] = new Paragraph(line[9]);
+                        pworkplace[i] = new Paragraph(line[9]);
                         break;
 
                     case 2:
                         experience.AddCell(empty);
-                        worktype[i] = new Paragraph(line[10]);
+                        pworkname[i] = new Paragraph(line[10]);
                         work_dates[i] = new Cell().Add(new Paragraph(line[11]));
-                        workplace[i] = new Paragraph(line[12]);
+                        pworkplace[i] = new Paragraph(line[12]);
                         break;
                 }
 
-                worktype[i].SetFontSize(13).SetFont(timesroman);
-                workplace[i].SetFontSize(10).SetFont(timesitalic).SetFontColor(DeviceRgb.BLUE);
+                pworkname[i].SetFontSize(13).SetFont(timesroman);
+                pworkplace[i].SetFontSize(10).SetFont(timesitalic).SetFontColor(DeviceRgb.BLUE);
 
-                work[i] = new Cell().Add(worktype[i]).Add(workplace[i]).SetWidth(230).SetBorder(Border.NO_BORDER);
+                work[i] = new Cell().Add(pworkname[i]).Add(pworkplace[i]).SetWidth(230).SetBorder(Border.NO_BORDER);
                 work_dates[i].SetFont(timesroman).SetFontSize(11).SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT).SetWidth(120).SetBorder(Border.NO_BORDER);
 
                 if (i == 0)
@@ -169,23 +199,23 @@ namespace Tutorial.Chapter01
                 {
                     case 0:
                         education.AddHeaderCell(title[1]);
-                        schoolname[i] = new Paragraph(line[13]);
+                        pschoolname[i] = new Paragraph(line[13]);
                         school_dates[i] = new Cell().Add(new Paragraph(line[14]));
-                        schooltype[i] = new Paragraph(line[15]);
+                        pschooltype[i] = new Paragraph(line[15]);
                         break;
 
                     case 1:
                         education.AddCell(empty);
-                        schoolname[i] = new Paragraph(line[16]);
+                        pschoolname[i] = new Paragraph(line[16]);
                         school_dates[i] = new Cell().Add(new Paragraph(line[17]));
-                        schooltype[i] = new Paragraph(line[18]);
+                        pschooltype[i] = new Paragraph(line[18]);
                         break;
                 }
 
-                schoolname[i].SetFontSize(12).SetFont(timesroman);
-                schooltype[i].SetFontSize(10).SetFont(timesitalic).SetFontColor(DeviceRgb.BLUE);
+                pschoolname[i].SetFontSize(12).SetFont(timesroman);
+                pschooltype[i].SetFontSize(10).SetFont(timesitalic).SetFontColor(DeviceRgb.BLUE);
 
-                school[i] = new Cell().Add(schoolname[i]).Add(schooltype[i]).SetWidth(230).SetBorder(Border.NO_BORDER);
+                school[i] = new Cell().Add(pschoolname[i]).Add(pschooltype[i]).SetWidth(230).SetBorder(Border.NO_BORDER);
                 school_dates[i].SetFont(timesroman).SetFontSize(11).SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT).SetWidth(120).SetBorder(Border.NO_BORDER);
 
                 if (i == 0)

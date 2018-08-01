@@ -189,9 +189,12 @@ namespace Tutorial.Chapter01
                     experience.AddCell(work_dates[i]);
 
                     //school
-                    education.AddCell(empty);
-                    education.AddCell(school[i]);
-                    education.AddCell(school_dates[i]);
+                    if (schoolplace[i] == "no data")
+                    {
+                        education.AddCell(empty);
+                        education.AddCell(school[i]);
+                        education.AddCell(school_dates[i]);
+                    }
                 }
             }
 

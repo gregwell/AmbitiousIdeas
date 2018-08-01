@@ -185,8 +185,8 @@ namespace Tutorial.Chapter01
                 {
                     //work
                     experience.AddCell(empty);
-                    experience.AddCell(school[i]);
-                    experience.AddCell(school_dates[i]);
+                    experience.AddCell(work[i]);
+                    experience.AddCell(work_dates[i]);
 
                     //school
                     education.AddCell(empty);

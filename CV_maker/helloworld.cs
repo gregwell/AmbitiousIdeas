@@ -131,8 +131,16 @@ namespace Tutorial.Chapter01
             var education = new Table(new float[] { 2, 5, 2 });
 
             // left side / title or empty /
-            Cell empty = new Cell().Add(new Paragraph("")).SetFont(timesroman).SetFontSize(15).SetBorder(Border.NO_BORDER).SetWidth(100);
+
+            Cell[] work_empty = new Cell[2];
+            Cell[] school_empty = new Cell[2];
             Cell[] title = new Cell[2];
+
+            for (int i = 0; i < 2; i++)
+            {
+                work_empty[i] = new Cell().Add(new Paragraph("")).SetBorder(Border.NO_BORDER).SetWidth(100);
+                school_empty[i] = new Cell().Add(new Paragraph("")).SetBorder(Border.NO_BORDER).SetWidth(100);
+            }
 
             for (int i = 0; i < 2; i++)
             {
@@ -174,40 +182,32 @@ namespace Tutorial.Chapter01
                 if (i == 0)
                 {
                     //work
-                    experience.AddHeaderCell(title[0]);
-                    experience.AddHeaderCell(work[0]);
-                    experience.AddHeaderCell(work_dates[0]);
+                    experience.AddCell(title[0]);
+                    experience.AddCell(work[0]);
+                    experience.AddCell(work_dates[0]);
 
                     //school
-                    education.AddHeaderCell(title[1]);
-                    education.AddHeaderCell(school[0]);
-                    education.AddHeaderCell(school_dates[0]);
-                }
-                else if (i == 1)
-                {
-                    //work
-                    experience.AddCell(empty);
-                    experience.AddCell(work[i]);
-                    experience.AddCell(work_dates[i]);
-
-                    //school
-
-                    //education.AddCell(empty);
-                    // education.AddCell(school[i]);
-                    // education.AddCell(school_dates[i]);
+                    education.AddCell(title[1]);
+                    education.AddCell(school[0]);
+                    education.AddCell(school_dates[0]);
                 }
                 else
                 {
                     //work
-                    experience.AddCell(empty);
-                    experience.AddCell(work[i]);
-                    experience.AddCell(work_dates[i]);
+                    if (workplace[i] != "no data")
+                    {
+                        experience.AddCell(work_empty[i - 1]);
+                        experience.AddCell(work[i]);
+                        experience.AddCell(work_dates[i]);
+                    }
 
                     //school
-
-                    education.AddCell(empty);
-                    education.AddCell(school[i]);
-                    education.AddCell(school_dates[i]);
+                    if (schoolplace[i] != "no data")
+                    {
+                        education.AddCell(school_empty[i - 1]);
+                        education.AddCell(school[i]);
+                        education.AddCell(school_dates[i]);
+                    }
                 }
             }
 

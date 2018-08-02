@@ -182,14 +182,19 @@ namespace Tutorial.Chapter01
                 if (i == 0)
                 {
                     //work
-                    experience.AddCell(title[0]);
-                    experience.AddCell(work[0]);
-                    experience.AddCell(work_dates[0]);
-
+                    if (workplace[i] != "no data")
+                    {
+                        experience.AddCell(title[0]);
+                        experience.AddCell(work[0]);
+                        experience.AddCell(work_dates[0]);
+                    }
                     //school
-                    education.AddCell(title[1]);
-                    education.AddCell(school[0]);
-                    education.AddCell(school_dates[0]);
+                    if (schoolplace[i] != "no data")
+                    {
+                        education.AddCell(title[1]);
+                        education.AddCell(school[0]);
+                        education.AddCell(school_dates[0]);
+                    }
                 }
                 else
                 {
@@ -222,9 +227,9 @@ namespace Tutorial.Chapter01
             document.Add(new Paragraph("\n"));
             document.Add(separator);
             document.Add(experience);
-            document.Add(separator);
+            if (!experience.IsEmpty()) document.Add(separator);
             document.Add(education);
-            document.Add(separator);
+            if (!education.IsEmpty()) document.Add(separator);
 
             document.Add(photo);
             document.Close();

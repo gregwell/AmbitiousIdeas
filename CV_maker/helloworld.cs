@@ -214,6 +214,13 @@ namespace Tutorial.Chapter01
             document.Add(education);
             if (!education.IsEmpty()) document.Add(separator);
 
+            //would you like to add a new language?
+            //would you like to add a new interests?
+            //would you like to add a new skill?
+            // if yes - add to
+            //additional_table[0] and as a title[2 or more] (left panel) display the language/interests/skill you choose.
+            //or simply new tables language / interests/ skills and the same way of adding them to the document.
+
             document.Add(photo);
             document.Close();
         }

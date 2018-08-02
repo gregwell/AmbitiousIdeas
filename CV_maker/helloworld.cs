@@ -177,51 +177,34 @@ namespace Tutorial.Chapter01
                 school[i] = new Cell().Add(pschoolname[i]).Add(pschoolplace[i]).SetWidth(230).SetBorder(Border.NO_BORDER);
                 school_dates[i].SetFont(timesroman).SetFontSize(11).SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT).SetWidth(120).SetBorder(Border.NO_BORDER);
 
-                //the problem which occure is about exposing only 1 and 2 record ( data doesnt matter) / exposing 1 and 3 record is fine as well.
-
-                if (i == 0)
+                //adding data to tables.
+                if (workplace[i] != "no data")
                 {
-                    //work
-                    if (workplace[i] != "no data")
+                    if (i == 0)
                     {
                         experience.AddCell(title[0]);
-                        experience.AddCell(work[0]);
-                        experience.AddCell(work_dates[0]);
                     }
-                    //school
-                    if (schoolplace[i] != "no data")
-                    {
-                        education.AddCell(title[1]);
-                        education.AddCell(school[0]);
-                        education.AddCell(school_dates[0]);
-                    }
-                }
-                else
-                {
-                    //work
-                    if (workplace[i] != "no data")
+                    else
                     {
                         experience.AddCell(work_empty[i - 1]);
-                        experience.AddCell(work[i]);
-                        experience.AddCell(work_dates[i]);
                     }
-
-                    //school
-                    if (schoolplace[i] != "no data")
+                    experience.AddCell(work[i]);
+                    experience.AddCell(work_dates[i]);
+                }
+                if (schoolplace[i] != "no data")
+                {
+                    if (i == 0)
+                    {
+                        education.AddCell(title[1]);
+                    }
+                    else
                     {
                         education.AddCell(school_empty[i - 1]);
-                        education.AddCell(school[i]);
-                        education.AddCell(school_dates[i]);
                     }
+                    education.AddCell(school[i]);
+                    education.AddCell(school_dates[i]);
                 }
             }
-
-            // EXPERIENCE ABOVE ----------------------------------------
-
-            //var education = new Table(new float[] { 2, 5, 2 });
-            //education.AddHeaderCell(new Cell().Add(new Paragraph("Education:")).SetFont(timesroman).SetFontSize(15).SetBorder(Border.NO_BORDER).SetWidth(100));
-            //education.AddHeaderCell(new Cell().Add(new Paragraph(line[13] + "\n" + line[15])).SetFont(timesroman).SetFontSize(14).SetWidth(250).SetBorder(Border.NO_BORDER));
-            //education.AddHeaderCell(new Cell().Add(new Paragraph(line[14])).SetFont(timesroman).SetFontSize(12).SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT).SetWidth(100).SetBorder(Border.NO_BORDER));
 
             document.Add(person);
             document.Add(new Paragraph("\n"));

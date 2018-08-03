@@ -49,7 +49,7 @@ namespace Tutorial.Chapter01
             photo.SetFixedPosition(450, 650);
 
             //reading from the file
-            string[] line = new string[26];
+            string[] line = new string[28];
             using (var reader = new StreamReader("D:/data.txt"))
             {
                 for (int i = 0; i < line.Length; i++)
@@ -58,11 +58,14 @@ namespace Tutorial.Chapter01
                 }
             }
 
+            //personal data
             string[] personal = new string[4];
             personal[0] = line[0];
             personal[1] = line[1];
             personal[2] = line[2];
             personal[3] = line[3];
+
+            //workplace
             string[] workname = new string[3];
             workname[0] = line[4];
             workname[1] = line[7];
@@ -76,6 +79,7 @@ namespace Tutorial.Chapter01
             workplace[1] = line[9];
             workplace[2] = line[12];
 
+            //education
             string[] schoolname = new string[3];
             schoolname[0] = line[13];
             schoolname[1] = line[16];
@@ -89,8 +93,20 @@ namespace Tutorial.Chapter01
             schoolplace[1] = line[18];
             schoolplace[2] = line[21];
 
+            //language
+            string[] languagename = new string[3];
+            languagename[0] = line[22];
+            languagename[1] = line[24];
+            languagename[2] = line[26];
+            string[] languagelevel = new string[3];
+            languagelevel[0] = line[23];
+            languagelevel[1] = line[25];
+            languagelevel[2] = line[27];
+
             SolidLine solidline = new SolidLine(2f);
             LineSeparator separator = new LineSeparator(solidline);
+            separator.SetMarginTop(10);
+            separator.SetMarginBottom(10);
 
             document.Add(new Paragraph(line[0]).SetFont(timesroman).SetFontSize(20));
             document.Add(new Paragraph("Cirraculum Vitae").SetFontSize(9).SetFont(italic));
@@ -108,7 +124,7 @@ namespace Tutorial.Chapter01
                     case 1: details[i] = new Cell().Add(new Paragraph("Phone")); break;
                     case 2: details[i] = new Cell().Add(new Paragraph("E-mail:")); break;
                 }
-                details[i].SetFont(bold).SetFontSize(10).SetBorder(Border.NO_BORDER);
+                details[i].SetFont(bold).SetFontSize(10).SetBorder(Border.NO_BORDER).SetWidth(100);
                 details_data[i] = new Cell().Add(new Paragraph(personal[i])).SetFontSize(10).SetBorder(Border.NO_BORDER);
                 person.AddCell(details[i]);
                 person.AddCell(details_data[i]);
@@ -126,28 +142,39 @@ namespace Tutorial.Chapter01
             Cell[] school = new Cell[3];
             Cell[] school_dates = new Cell[3];
 
+            Paragraph[] planguagename = new Paragraph[3];
+            Paragraph[] planguagelevel = new Paragraph[3];
+            Cell[] language = new Cell[3];
+
             //table structures
             var experience = new Table(new float[] { 2, 5, 2 });
             var education = new Table(new float[] { 2, 5, 2 });
+            var languages = new Table(new float[] { 2, 5, 2 });
 
             // left side / title or empty /
 
             Cell[] work_empty = new Cell[2];
             Cell[] school_empty = new Cell[2];
-            Cell[] title = new Cell[2];
+            Cell[] language_empty_left = new Cell[2];
+            Cell[] language_empty_right = new Cell[2];
+            Cell[] title = new Cell[3];
 
             for (int i = 0; i < 2; i++)
             {
                 work_empty[i] = new Cell().Add(new Paragraph("")).SetBorder(Border.NO_BORDER).SetWidth(100);
                 school_empty[i] = new Cell().Add(new Paragraph("")).SetBorder(Border.NO_BORDER).SetWidth(100);
+
+                language_empty_left[i] = new Cell().Add(new Paragraph("")).SetBorder(Border.NO_BORDER).SetWidth(100);
+                language_empty_right[i] = new Cell().Add(new Paragraph("")).SetBorder(Border.NO_BORDER).SetWidth(100);
             }
 
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 3; i++)
             {
                 switch (i)
                 {
                     case 0: title[i] = new Cell().Add(new Paragraph("Experience:")); break;
                     case 1: title[i] = new Cell().Add(new Paragraph("Education")); break;
+                    case 2: title[i] = new Cell().Add(new Paragraph("Languages:")); break;
                 }
                 title[i].SetFont(timesroman).SetFontSize(15).SetBorder(Border.NO_BORDER).SetWidth(100);
             }
@@ -177,6 +204,10 @@ namespace Tutorial.Chapter01
                 school[i] = new Cell().Add(pschoolname[i]).Add(pschoolplace[i]).SetWidth(230).SetBorder(Border.NO_BORDER);
                 school_dates[i].SetFont(timesroman).SetFontSize(11).SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT).SetWidth(120).SetBorder(Border.NO_BORDER);
 
+                //language cells
+                planguagename[i] = new Paragraph(languagename[i] + " - " + languagelevel[i]);
+                language[i] = new Cell().Add(planguagename[i]).SetWidth(230).SetFontSize(10).SetHeight(20).SetBorder(Border.NO_BORDER);
+
                 //adding data to tables.
                 if (workplace[i] != "no data")
                 {
@@ -204,6 +235,21 @@ namespace Tutorial.Chapter01
                     education.AddCell(school[i]);
                     education.AddCell(school_dates[i]);
                 }
+                if (languagename[i] != "no data")
+                {
+                    if (i == 0)
+                    {
+                        languages.AddCell(title[2]);
+                        languages.AddCell(language[0]);
+                        languages.AddCell(language_empty_right[0]);
+                    }
+                    else
+                    {
+                        languages.AddCell(language_empty_left[i - 1]);
+                        languages.AddCell(language[i]);
+                        languages.AddCell(language_empty_right[i - 1]);
+                    }
+                }
             }
 
             document.Add(person);
@@ -213,6 +259,8 @@ namespace Tutorial.Chapter01
             if (!experience.IsEmpty()) document.Add(separator);
             document.Add(education);
             if (!education.IsEmpty()) document.Add(separator);
+            document.Add(languages);
+            if (!languages.IsEmpty()) document.Add(separator);
 
             //would you like to add a new language?
             //would you like to add a new interests?

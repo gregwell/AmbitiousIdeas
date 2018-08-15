@@ -152,8 +152,7 @@ namespace Tutorial.Chapter01
             Paragraph[] planguagelevel = new Paragraph[3];
             Cell[] language = new Cell[3];
 
-            Paragraph[] pinterestname = new Paragraph[3];
-            Cell[] interest = new Cell[3];
+            var pinterest = new Paragraph();
 
             //table structures
             var experience = new Table(new float[] { 2, 5, 2 });
@@ -224,10 +223,6 @@ namespace Tutorial.Chapter01
                 planguagename[i] = new Paragraph(languagename[i] + " - " + languagelevel[i]);
                 language[i] = new Cell().Add(planguagename[i]).SetWidth(230).SetFontSize(10).SetHeight(20).SetBorder(Border.NO_BORDER);
 
-                //interest cells
-                pinterestname[i] = new Paragraph(interestname[i]);
-                interest[i] = new Cell().Add(pinterestname[i]).SetWidth(230).SetFontSize(10).SetHeight(20).SetBorder(Border.NO_BORDER);
-
                 //adding data to tables.
                 if (workplace[i] != "no data")
                 {
@@ -274,18 +269,21 @@ namespace Tutorial.Chapter01
                 {
                     if (i == 0)
                     {
-                        interests.AddCell(title[3]);
-                        interests.AddCell(interest[0]);
-                        interests.AddCell(interest_empty_right[0]);
+                        pinterest.Add(interestname[i]);
                     }
                     else
                     {
-                        interests.AddCell(interest_empty_left[i - 1]);
-                        interests.AddCell(interest[i]);
-                        interests.AddCell(interest_empty_right[i - 1]);
+                        pinterest.Add(", " + interestname[i]);
                     }
                 }
             }
+
+            var cinterest = new Cell().SetWidth(230).SetFontSize(10).SetHeight(20).SetBorder(Border.NO_BORDER);
+            cinterest.Add(pinterest);
+
+            interests.AddCell(title[3]);
+            interests.AddCell(cinterest);
+            interests.AddCell(interest_empty_right[0]);
 
             document.Add(person);
             document.Add(new Paragraph("\n"));

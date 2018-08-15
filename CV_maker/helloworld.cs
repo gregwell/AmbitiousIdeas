@@ -49,7 +49,7 @@ namespace Tutorial.Chapter01
             photo.SetFixedPosition(450, 650);
 
             //reading from the file
-            string[] line = new string[28];
+            string[] line = new string[31];
             using (var reader = new StreamReader("D:/data.txt"))
             {
                 for (int i = 0; i < line.Length; i++)
@@ -103,6 +103,12 @@ namespace Tutorial.Chapter01
             languagelevel[1] = line[25];
             languagelevel[2] = line[27];
 
+            //interests
+            string[] interestname = new string[3];
+            interestname[0] = line[28];
+            interestname[1] = line[29];
+            interestname[2] = line[30];
+
             SolidLine solidline = new SolidLine(2f);
             LineSeparator separator = new LineSeparator(solidline);
             separator.SetMarginTop(10);
@@ -146,10 +152,14 @@ namespace Tutorial.Chapter01
             Paragraph[] planguagelevel = new Paragraph[3];
             Cell[] language = new Cell[3];
 
+            Paragraph[] pinterestname = new Paragraph[3];
+            Cell[] interest = new Cell[3];
+
             //table structures
             var experience = new Table(new float[] { 2, 5, 2 });
             var education = new Table(new float[] { 2, 5, 2 });
             var languages = new Table(new float[] { 2, 5, 2 });
+            var interests = new Table(new float[] { 2, 5, 2 });
 
             // left side / title or empty /
 
@@ -157,7 +167,9 @@ namespace Tutorial.Chapter01
             Cell[] school_empty = new Cell[2];
             Cell[] language_empty_left = new Cell[2];
             Cell[] language_empty_right = new Cell[2];
-            Cell[] title = new Cell[3];
+            Cell[] interest_empty_left = new Cell[2];
+            Cell[] interest_empty_right = new Cell[2];
+            Cell[] title = new Cell[4];
 
             for (int i = 0; i < 2; i++)
             {
@@ -166,15 +178,19 @@ namespace Tutorial.Chapter01
 
                 language_empty_left[i] = new Cell().Add(new Paragraph("")).SetBorder(Border.NO_BORDER).SetWidth(100);
                 language_empty_right[i] = new Cell().Add(new Paragraph("")).SetBorder(Border.NO_BORDER).SetWidth(100);
+
+                interest_empty_left[i] = new Cell().Add(new Paragraph("")).SetBorder(Border.NO_BORDER).SetWidth(100);
+                interest_empty_right[i] = new Cell().Add(new Paragraph("")).SetBorder(Border.NO_BORDER).SetWidth(100);
             }
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 4; i++)
             {
                 switch (i)
                 {
                     case 0: title[i] = new Cell().Add(new Paragraph("Experience:")); break;
                     case 1: title[i] = new Cell().Add(new Paragraph("Education")); break;
                     case 2: title[i] = new Cell().Add(new Paragraph("Languages:")); break;
+                    case 3: title[i] = new Cell().Add(new Paragraph("Interests:")); break;
                 }
                 title[i].SetFont(timesroman).SetFontSize(15).SetBorder(Border.NO_BORDER).SetWidth(100);
             }
@@ -207,6 +223,10 @@ namespace Tutorial.Chapter01
                 //language cells
                 planguagename[i] = new Paragraph(languagename[i] + " - " + languagelevel[i]);
                 language[i] = new Cell().Add(planguagename[i]).SetWidth(230).SetFontSize(10).SetHeight(20).SetBorder(Border.NO_BORDER);
+
+                //interest cells
+                pinterestname[i] = new Paragraph(interestname[i]);
+                interest[i] = new Cell().Add(pinterestname[i]).SetWidth(230).SetFontSize(10).SetHeight(20).SetBorder(Border.NO_BORDER);
 
                 //adding data to tables.
                 if (workplace[i] != "no data")
@@ -250,6 +270,21 @@ namespace Tutorial.Chapter01
                         languages.AddCell(language_empty_right[i - 1]);
                     }
                 }
+                if (interestname[i] != "no data")
+                {
+                    if (i == 0)
+                    {
+                        interests.AddCell(title[3]);
+                        interests.AddCell(interest[0]);
+                        interests.AddCell(interest_empty_right[0]);
+                    }
+                    else
+                    {
+                        interests.AddCell(interest_empty_left[i - 1]);
+                        interests.AddCell(interest[i]);
+                        interests.AddCell(interest_empty_right[i - 1]);
+                    }
+                }
             }
 
             document.Add(person);
@@ -261,6 +296,8 @@ namespace Tutorial.Chapter01
             if (!education.IsEmpty()) document.Add(separator);
             document.Add(languages);
             if (!languages.IsEmpty()) document.Add(separator);
+            document.Add(interests);
+            if (!interests.IsEmpty()) document.Add(separator);
 
             //would you like to add a new language?
             //would you like to add a new interests?

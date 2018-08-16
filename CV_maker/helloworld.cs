@@ -131,7 +131,7 @@ namespace Tutorial.Chapter01
                     case 2: details[i] = new Cell().Add(new Paragraph("E-mail:")); break;
                 }
                 details[i].SetFont(bold).SetFontSize(10).SetBorder(Border.NO_BORDER).SetWidth(100);
-                details_data[i] = new Cell().Add(new Paragraph(personal[i])).SetFontSize(10).SetBorder(Border.NO_BORDER);
+                details_data[i] = new Cell().Add(new Paragraph(personal[i + 1])).SetFontSize(10).SetBorder(Border.NO_BORDER);
                 person.AddCell(details[i]);
                 person.AddCell(details_data[i]);
             }

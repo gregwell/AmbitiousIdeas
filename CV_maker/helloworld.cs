@@ -48,6 +48,88 @@ namespace Tutorial.Chapter01
             photo.SetHeight(90);
             photo.SetFixedPosition(450, 650);
 
+            //WRITING TO FILE
+            string[] writerline = new string[2];
+            using (var filewriter = new StreamWriter("D:/saved.txt"))
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    switch (i)
+                    {
+                        case 0: Console.Write("Identities:\n    name + surname: "); break;
+                        case 1: Console.Write("    birthdate: "); break;
+                        case 2: Console.Write("    phone:"); break;
+                        case 3: Console.Write("    e-mail:"); break;
+                    }
+                    filewriter.WriteLine(Console.ReadLine());
+                }
+                Console.Write("\nWould you like to add work place 1 ? y - yes  n - no : ");
+                var yesorno = Console.ReadLine();
+                if (yesorno == "y")
+                {
+                    Console.WriteLine("\nWorkplace 1: ");
+                    Console.Write("    work name:");
+                    filewriter.WriteLine(Console.ReadLine());
+
+                    Console.Write("    work dates:");
+                    filewriter.WriteLine(Console.ReadLine());
+
+                    Console.Write("     work place:");
+                    filewriter.WriteLine(Console.ReadLine());
+
+                    //idea that all entered data can be displayed in top pannel of console window.?????
+
+                    Console.Write("Would you like to add work place 2? \nType: y - yes or n-no : ");
+                    yesorno = Console.ReadLine();
+                    if (yesorno == "y")
+                    {
+                        Console.Write(" work name:");
+                        filewriter.WriteLine(Console.ReadLine());
+
+                        Console.Write(" work dates:");
+                        filewriter.WriteLine(Console.ReadLine());
+
+                        Console.Write(" work place:");
+                        filewriter.WriteLine(Console.ReadLine());
+
+                        Console.Write("Would you like to add work place 3? \nType: y - yes or n-no : ");
+                        yesorno = Console.ReadLine();
+                        if (yesorno == "y")
+                        {
+                            Console.Write("Enter:\n work name:");
+                            filewriter.WriteLine(Console.ReadLine());
+
+                            Console.Write("Enter:\n work dates:");
+                            filewriter.WriteLine(Console.ReadLine());
+
+                            Console.Write("Enter:\n work place:");
+                            filewriter.WriteLine(Console.ReadLine());
+                        }
+                        else
+                        {
+                            filewriter.WriteLine("no data");
+                            filewriter.WriteLine("no data");
+                        }
+                    }
+                    else
+                    {
+                        filewriter.WriteLine("no data");
+                        filewriter.WriteLine("no data");
+                        filewriter.WriteLine("no data");
+                        filewriter.WriteLine("no data");
+                    }
+                }
+                else
+                {
+                    filewriter.WriteLine("no data");
+                    filewriter.WriteLine("no data");
+                    filewriter.WriteLine("no data");
+                    filewriter.WriteLine("no data");
+                    filewriter.WriteLine("no data");
+                    filewriter.WriteLine("no data");
+                }
+            }
+
             //reading from the file
             string[] line = new string[31];
             using (var reader = new StreamReader("D:/data.txt"))

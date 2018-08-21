@@ -74,7 +74,7 @@ namespace Tutorial.Chapter01
                     Console.Write("    work dates:");
                     filewriter.WriteLine(Console.ReadLine());
 
-                    Console.Write("     work place:");
+                    Console.Write("    work place:");
                     filewriter.WriteLine(Console.ReadLine());
 
                     //idea that all entered data can be displayed in top pannel of console window.?????
@@ -83,6 +83,7 @@ namespace Tutorial.Chapter01
                     yesorno = Console.ReadLine();
                     if (yesorno == "y")
                     {
+                        Console.WriteLine("\nWorkplace 2: ");
                         Console.Write(" work name:");
                         filewriter.WriteLine(Console.ReadLine());
 
@@ -96,13 +97,14 @@ namespace Tutorial.Chapter01
                         yesorno = Console.ReadLine();
                         if (yesorno == "y")
                         {
-                            Console.Write("Enter:\n work name:");
+                            Console.WriteLine("\nWorkplace 2: ");
+                            Console.Write(" work name:");
                             filewriter.WriteLine(Console.ReadLine());
 
-                            Console.Write("Enter:\n work dates:");
+                            Console.Write(" work dates:");
                             filewriter.WriteLine(Console.ReadLine());
 
-                            Console.Write("Enter:\n work place:");
+                            Console.Write(" work place:");
                             filewriter.WriteLine(Console.ReadLine());
                         }
                         else

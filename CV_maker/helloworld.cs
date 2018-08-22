@@ -109,26 +109,97 @@ namespace Tutorial.Chapter01
                         }
                         else
                         {
-                            filewriter.WriteLine("no data");
-                            filewriter.WriteLine("no data");
+                            for (int i = 0; i < 2; i++)
+                            {
+                                filewriter.WriteLine("no data");
+                            }
                         }
                     }
                     else
                     {
-                        filewriter.WriteLine("no data");
-                        filewriter.WriteLine("no data");
-                        filewriter.WriteLine("no data");
-                        filewriter.WriteLine("no data");
+                        for (int i = 0; i < 4; i++)
+                        {
+                            filewriter.WriteLine("no data");
+                        }
                     }
                 }
                 else
                 {
-                    filewriter.WriteLine("no data");
-                    filewriter.WriteLine("no data");
-                    filewriter.WriteLine("no data");
-                    filewriter.WriteLine("no data");
-                    filewriter.WriteLine("no data");
-                    filewriter.WriteLine("no data");
+                    for (int i = 0; i < 6; i++)
+                    {
+                        filewriter.WriteLine("no data");
+                    }
+                }
+
+                Console.Write("\nWould you like to add education 1 ? y - yes  n - no : ");
+                yesorno = Console.ReadLine();
+                while (yesorno != "y" || yesorno != "n")
+                {
+                    Console.WriteLine("Enter y or n...");
+                    yesorno = Console.ReadLine();
+                }
+                if (yesorno == "y")
+                {
+                    Console.WriteLine("\n Education 1: ");
+                    Console.Write("    education name:");
+                    filewriter.WriteLine(Console.ReadLine());
+
+                    Console.Write("    education years:");
+                    filewriter.WriteLine(Console.ReadLine());
+
+                    Console.Write("    education place:");
+                    filewriter.WriteLine(Console.ReadLine());
+
+                    Console.Write("Would you like to add education 2? \nType: y - yes or n-no : ");
+                    yesorno = Console.ReadLine();
+                    if (yesorno == "y")
+                    {
+                        Console.WriteLine("\n Education 2: ");
+                        Console.Write("    education name:");
+                        filewriter.WriteLine(Console.ReadLine());
+
+                        Console.Write("    education years:");
+                        filewriter.WriteLine(Console.ReadLine());
+
+                        Console.Write("    education place:");
+                        filewriter.WriteLine(Console.ReadLine());
+
+                        Console.Write("Would you like to add education 3? \nType: y - yes or n-no : ");
+                        yesorno = Console.ReadLine();
+                        if (yesorno == "y")
+                        {
+                            Console.WriteLine("\n Education 3: ");
+                            Console.Write("    education name:");
+                            filewriter.WriteLine(Console.ReadLine());
+
+                            Console.Write("    education years:");
+                            filewriter.WriteLine(Console.ReadLine());
+
+                            Console.Write("    education place:");
+                            filewriter.WriteLine(Console.ReadLine());
+                        }
+                        else
+                        {
+                            for (int i = 0; i < 2; i++)
+                            {
+                                filewriter.WriteLine("no data");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < 4; i++)
+                        {
+                            filewriter.WriteLine("no data");
+                        }
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        filewriter.WriteLine("no data");
+                    }
                 }
             }
 

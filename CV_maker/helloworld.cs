@@ -130,7 +130,7 @@ namespace Tutorial.Chapter01
                         }
                         else
                         {
-                            for (int i = 0; i < 2; i++)
+                            for (int i = 0; i < 3; i++)
                             {
                                 filewriter.WriteLine("no data");
                             }
@@ -138,7 +138,7 @@ namespace Tutorial.Chapter01
                     }
                     else
                     {
-                        for (int i = 0; i < 4; i++)
+                        for (int i = 0; i < 6; i++)
                         {
                             filewriter.WriteLine("no data");
                         }
@@ -146,7 +146,7 @@ namespace Tutorial.Chapter01
                 }
                 else
                 {
-                    for (int i = 0; i < 6; i++)
+                    for (int i = 0; i < 9; i++)
                     {
                         filewriter.WriteLine("no data");
                     }
@@ -295,11 +295,87 @@ namespace Tutorial.Chapter01
 
                         if (cki.Key.ToString() == "Y")
                         {
-                            Console.WriteLine("\n Education 2: ");
+                            Console.WriteLine("\n Education 3: ");
                             Console.Write("    language:");
                             filewriter.WriteLine(Console.ReadLine());
 
                             Console.Write("    advancement level:");
+                            filewriter.WriteLine(Console.ReadLine());
+                        }
+                        else
+                        {
+                            for (int i = 0; i < 2; i++)
+                            {
+                                filewriter.WriteLine("no data");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < 4; i++)
+                        {
+                            filewriter.WriteLine("no data");
+                        }
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        filewriter.WriteLine("no data");
+                    }
+                }
+
+                //DDDDDDDDDD
+
+                //dddddddddddd
+
+                Console.Write("\nWould you like to add interests? y - yes  n - no : ");
+                cki = Console.ReadKey();
+                //the difference between normal string with one key and consolekeyinfo is that the second one
+                //forces console to show the form instantly, no enter needed).
+
+                while (cki.Key.ToString() != "Y" && cki.Key.ToString() != "N")
+                {
+                    Console.WriteLine(" (Invalid input. Type y-yes or n-no)");
+                    cki = Console.ReadKey();
+                }
+
+                //FIRST QUERY - language
+                if (cki.Key.ToString() == "Y")
+                {
+                    Console.WriteLine("\n Interest 1: ");
+                    Console.Write("    interest:");
+                    filewriter.WriteLine(Console.ReadLine());
+
+                    Console.Write("Would you like to add interest 2? Type: y - yes or n-no : ");
+                    cki = Console.ReadKey();
+
+                    while (cki.Key.ToString() != "Y" && cki.Key.ToString() != "N")
+                    {
+                        Console.WriteLine(" (Invalid input. Type y-yes or n-no)");
+                        cki = Console.ReadKey();
+                    }
+
+                    if (cki.Key.ToString() == "Y")
+                    {
+                        Console.WriteLine("\n Interest 2: ");
+                        Console.Write("    interest:");
+                        filewriter.WriteLine(Console.ReadLine());
+
+                        Console.Write("Would you like to add interest 3? Type: y - yes or n-no : ");
+                        cki = Console.ReadKey();
+
+                        while (cki.Key.ToString() != "Y" && cki.Key.ToString() != "N")
+                        {
+                            Console.WriteLine(" (Invalid input. Type y-yes or n-no)");
+                            cki = Console.ReadKey();
+                        }
+
+                        if (cki.Key.ToString() == "Y")
+                        {
+                            Console.WriteLine("\n Interest 3: ");
+                            Console.Write("    interest:");
                             filewriter.WriteLine(Console.ReadLine());
                         }
                         else
@@ -331,7 +407,7 @@ namespace Tutorial.Chapter01
 
             //reading from the file
             string[] line = new string[31];
-            using (var reader = new StreamReader("D:/data.txt"))
+            using (var reader = new StreamReader("D:/saved.txt"))
             {
                 for (int i = 0; i < line.Length; i++)
                 {

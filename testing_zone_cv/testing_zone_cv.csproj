@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B9B2E024-3916-470D-AB68-7FE6F63D6DF1}</ProjectGuid>
+    <ProjectGuid>{6904AAD3-9C62-41F4-B844-E467B66C71DD}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>CV_maker</RootNamespace>
-    <AssemblyName>CV_maker</AssemblyName>
+    <RootNamespace>testing_zone_cv</RootNamespace>
+    <AssemblyName>testing_zone_cv</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -78,7 +78,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="helloworld.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

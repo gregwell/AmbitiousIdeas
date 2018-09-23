@@ -132,13 +132,18 @@ namespace Tutorial.Chapter01
                 }
 
                 Console.Write("\nWould you like to add education 1 ? y - yes  n - no : ");
-                yesorno = Console.ReadLine();
-                while (yesorno != "y" || yesorno != "n")
+                ConsoleKeyInfo cki = Console.ReadKey();
+                //the difference between normal string with one key and consolekeyinfo is that the second one
+                //forces console to show the form instantly, no enter needed).
+
+                while (cki.Key.ToString() != "Y" && cki.Key.ToString() != "N")
                 {
-                    Console.WriteLine("Enter y or n...");
-                    yesorno = Console.ReadLine();
+                    Console.WriteLine(" (Invalid input. Type y-yes or n-no)");
+                    cki = Console.ReadKey();
                 }
-                if (yesorno == "y")
+
+                //FIRST QUERY
+                if (cki.Key.ToString() == "Y")
                 {
                     Console.WriteLine("\n Education 1: ");
                     Console.Write("    education name:");
@@ -150,9 +155,16 @@ namespace Tutorial.Chapter01
                     Console.Write("    education place:");
                     filewriter.WriteLine(Console.ReadLine());
 
-                    Console.Write("Would you like to add education 2? \nType: y - yes or n-no : ");
-                    yesorno = Console.ReadLine();
-                    if (yesorno == "y")
+                    Console.Write("Would you like to add education 2? Type: y - yes or n-no : ");
+                    cki = Console.ReadKey();
+
+                    while (cki.Key.ToString() != "Y" && cki.Key.ToString() != "N")
+                    {
+                        Console.WriteLine(" (Invalid input. Type y-yes or n-no)");
+                        cki = Console.ReadKey();
+                    }
+
+                    if (cki.Key.ToString() == "Y")
                     {
                         Console.WriteLine("\n Education 2: ");
                         Console.Write("    education name:");
@@ -164,15 +176,23 @@ namespace Tutorial.Chapter01
                         Console.Write("    education place:");
                         filewriter.WriteLine(Console.ReadLine());
 
-                        Console.Write("Would you like to add education 3? \nType: y - yes or n-no : ");
-                        yesorno = Console.ReadLine();
-                        if (yesorno == "y")
+                        Console.Write("Would you like to add education 3? Type: y - yes or n-no : ");
+                        cki = Console.ReadKey();
+
+                        while (cki.Key.ToString() != "Y" && cki.Key.ToString() != "N")
+                        {
+                            Console.WriteLine(" (Invalid input. Type y-yes or n-no)");
+                            cki = Console.ReadKey();
+                        }
+
+                        if (cki.Key.ToString() == "Y")
                         {
                             Console.WriteLine("\n Education 3: ");
                             Console.Write("    education name:");
                             filewriter.WriteLine(Console.ReadLine());
 
                             Console.Write("    education years:");
+
                             filewriter.WriteLine(Console.ReadLine());
 
                             Console.Write("    education place:");

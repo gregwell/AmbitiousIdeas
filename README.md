@@ -17,7 +17,8 @@ You don't need the Microsoft Office to create your CV!
 * [Stack Overflow](https://stackoverflow.com/) - copying and pasting from stack overflow
 * [Google](http://google.com/) - googling and googling
 
-
+## Plans for the future
+I will make GUI, when I will know how to do it. So not quickly.
 
 ## Authors
 

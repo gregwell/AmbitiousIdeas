@@ -7,6 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CV_maker", "CV_maker\CV_mak
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testing_zone_cv", "testing_zone_cv\testing_zone_cv.csproj", "{6904AAD3-9C62-41F4-B844-E467B66C71DD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E093642D-D420-40BD-8815-137EEC0E14A4}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Downloads\109311bb0361f32d87a2-8254b53ab8dcb18afc64287aaddd9e5b6059f880\109311bb0361f32d87a2-8254b53ab8dcb18afc64287aaddd9e5b6059f880\README.md = ..\..\..\Downloads\109311bb0361f32d87a2-8254b53ab8dcb18afc64287aaddd9e5b6059f880\109311bb0361f32d87a2-8254b53ab8dcb18afc64287aaddd9e5b6059f880\README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

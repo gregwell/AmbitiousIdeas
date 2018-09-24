@@ -73,6 +73,8 @@ namespace CvMaker
                     string second = "work dates";
                     string third = "company name";
 
+                    int counter = 1;
+
                     int noinfo = 3;
 
                     if (j == 1)
@@ -80,7 +82,7 @@ namespace CvMaker
                         wtf = "school";
                         first = "school name";
                         second = "school dates";
-                        third = "school place";
+                        third = "degree";
                     }
                     else if (j == 2)
                     {
@@ -96,68 +98,31 @@ namespace CvMaker
                         noinfo = 1;
                     }
 
-                    Console.Write("\nWould you like to add {0} ? y - yes  n - no : ", wtf);
+                    Question(wtf, counter);
                     cki = Console.ReadKey();
-
                     ValidateCki(cki);
 
                     if (cki.Key.ToString() == "Y")
                     {
-                        Console.WriteLine("\n{0} 1: ", wtf);
-                        Console.Write("    {0}:", first);
-                        filewriter.WriteLine(Console.ReadLine());
-                        if (j < 3)
-                        {
-                            Console.Write("    {0}:", second);
-                            filewriter.WriteLine(Console.ReadLine());
-                            if (j < 2)
-                            {
-                                Console.Write("    {0}:", third);
-                                filewriter.WriteLine(Console.ReadLine());
-                            }
-                        }
+                        WriteData(wtf, first, second, third, j, counter, filewriter);
+                        counter++;
 
-                        Console.Write("Would you like to add {0} 2? \nType: y - yes or n-no : ", wtf);
+                        Question(wtf, counter);
                         cki = Console.ReadKey();
-
                         ValidateCki(cki);
 
                         if (cki.Key.ToString() == "Y")
                         {
-                            Console.WriteLine("\n{0} 2: ", wtf);
-                            Console.Write("    {0}:", first);
-                            filewriter.WriteLine(Console.ReadLine());
-                            if (j < 3)
-                            {
-                                Console.Write("    {0}:", second);
-                                filewriter.WriteLine(Console.ReadLine());
-                                if (j < 2)
-                                {
-                                    Console.Write("    {0}:", third);
-                                    filewriter.WriteLine(Console.ReadLine());
-                                }
-                            }
+                            WriteData(wtf, first, second, third, j, counter, filewriter);
+                            counter++;
 
-                            Console.Write("Would you like to add {0} 3? \nType: y - yes or n-no : ", wtf);
+                            Question(wtf, counter);
                             cki = Console.ReadKey();
-
                             ValidateCki(cki);
 
                             if (cki.Key.ToString() == "Y")
                             {
-                                Console.WriteLine("\n{0} 3: ", wtf);
-                                Console.Write("    {0}:", first);
-                                filewriter.WriteLine(Console.ReadLine());
-                                if (j < 3)
-                                {
-                                    Console.Write("    {0}:", second);
-                                    filewriter.WriteLine(Console.ReadLine());
-                                    if (j < 2)
-                                    {
-                                        Console.Write("    {0}:", third);
-                                        filewriter.WriteLine(Console.ReadLine());
-                                    }
-                                }
+                                WriteData(wtf, first, second, third, j, counter, filewriter);
                             }
                             else for (int i = 0; i < noinfo; i++) filewriter.WriteLine("no data");
                         }
@@ -426,6 +391,28 @@ namespace CvMaker
             {
                 Console.WriteLine(" (Invalid input. Type y-yes or n-no)");
                 cki = Console.ReadKey();
+            }
+        }
+
+        public void Question(string name, int number)
+        {
+            Console.Write("\nWould you like to add {0} {1}? y - yes  n - no : ", name, number);
+        }
+
+        public void WriteData(string name, string first, string second, string third, int j, int counter, StreamWriter filewriter)
+        {
+            Console.WriteLine("\n{0} {1}: ", name, counter);
+            Console.Write("    {0}:", first);
+            filewriter.WriteLine(Console.ReadLine());
+            if (j < 3)
+            {
+                Console.Write("    {0}:", second);
+                filewriter.WriteLine(Console.ReadLine());
+                if (j < 2)
+                {
+                    Console.Write("    {0}:", third);
+                    filewriter.WriteLine(Console.ReadLine());
+                }
             }
         }
     }

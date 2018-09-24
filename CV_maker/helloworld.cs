@@ -14,9 +14,9 @@ using iText.Kernel.Pdf.Canvas.Draw;
 using iText.Kernel.Colors;
 using iText.Kernel.Pdf.Colorspace;
 
-namespace Tutorial.Chapter01
+namespace CvMaker
 {
-    public class C01E04_UnitedStates
+    public class PdfMaker
     {
         public const String DEST = "D:/cv.pdf";
         public const String PHOTO = "D:/photo.jpg";
@@ -25,7 +25,7 @@ namespace Tutorial.Chapter01
         {
             FileInfo file = new FileInfo(DEST);
             file.Directory.Create();
-            new C01E04_UnitedStates().CreatePdf(DEST);
+            new PdfMaker().CreatePdf(DEST);
         }
 
         public virtual void CreatePdf(String dest)

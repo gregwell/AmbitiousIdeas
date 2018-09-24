@@ -1,7 +1,5 @@
 using System;
 using System.IO;
-using iText.IO.Font;
-using iText.IO.Util;
 using iText.Kernel.Font;
 using iText.Kernel.Geom;
 using iText.Kernel.Pdf;
@@ -12,7 +10,6 @@ using iText.Layout.Borders;
 using iText.IO.Image;
 using iText.Kernel.Pdf.Canvas.Draw;
 using iText.Kernel.Colors;
-using iText.Kernel.Pdf.Colorspace;
 
 namespace CvMaker
 {

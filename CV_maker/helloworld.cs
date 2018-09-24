@@ -30,7 +30,7 @@ namespace CvMaker
 
         public virtual void CreatePdf(String dest)
         {
-            //formal shit
+            //document formalities
             var writer = new PdfWriter(dest);
             var pdf = new PdfDocument(writer);
             var document = new Document(pdf, PageSize.A4);
@@ -48,7 +48,7 @@ namespace CvMaker
             photo.SetHeight(90);
             photo.SetFixedPosition(450, 650);
 
-            //WRITING TO FILE
+            //writing to file
             string[] writerline = new string[2];
             using (var filewriter = new StreamWriter("D:/saved.txt"))
             {
@@ -63,8 +63,6 @@ namespace CvMaker
                     }
                     filewriter.WriteLine(Console.ReadLine());
                 }
-
-                //  MY AMAZING LOOP FOR AUTOMATIZATION WORK AND SCHOOL TOGETGER FOREVER
 
                 ConsoleKeyInfo cki;
 
@@ -101,11 +99,7 @@ namespace CvMaker
                     Console.Write("\nWould you like to add {0} ? y - yes  n - no : ", wtf);
                     cki = Console.ReadKey();
 
-                    while (cki.Key.ToString() != "Y" && cki.Key.ToString() != "N")
-                    {
-                        Console.WriteLine(" (Invalid input. Type y-yes or n-no)");
-                        cki = Console.ReadKey();
-                    }
+                    ValidateCki(cki);
 
                     if (cki.Key.ToString() == "Y")
                     {
@@ -126,11 +120,7 @@ namespace CvMaker
                         Console.Write("Would you like to add {0} 2? \nType: y - yes or n-no : ", wtf);
                         cki = Console.ReadKey();
 
-                        while (cki.Key.ToString() != "Y" && cki.Key.ToString() != "N")
-                        {
-                            Console.WriteLine(" (Invalid input. Type y-yes or n-no)");
-                            cki = Console.ReadKey();
-                        }
+                        ValidateCki(cki);
 
                         if (cki.Key.ToString() == "Y")
                         {
@@ -151,11 +141,7 @@ namespace CvMaker
                             Console.Write("Would you like to add {0} 3? \nType: y - yes or n-no : ", wtf);
                             cki = Console.ReadKey();
 
-                            while (cki.Key.ToString() != "Y" && cki.Key.ToString() != "N")
-                            {
-                                Console.WriteLine(" (Invalid input. Type y-yes or n-no)");
-                                cki = Console.ReadKey();
-                            }
+                            ValidateCki(cki);
 
                             if (cki.Key.ToString() == "Y")
                             {
@@ -173,32 +159,12 @@ namespace CvMaker
                                     }
                                 }
                             }
-                            else
-                            {
-                                for (int i = 0; i < noinfo; i++)
-                                {
-                                    filewriter.WriteLine("no data");
-                                }
-                            }
+                            else for (int i = 0; i < noinfo; i++) filewriter.WriteLine("no data");
                         }
-                        else
-                        {
-                            for (int i = 0; i < 2 * noinfo; i++)
-                            {
-                                filewriter.WriteLine("no data");
-                            }
-                        }
+                        else for (int i = 0; i < 2 * noinfo; i++) filewriter.WriteLine("no data");
                     }
-                    else
-                    {
-                        for (int i = 0; i < 3 * noinfo; i++)
-                        {
-                            filewriter.WriteLine("no data");
-                        }
-                    }
+                    else for (int i = 0; i < 3 * noinfo; i++) filewriter.WriteLine("no data");
                 }
-
-                //THIS IS THE END OF MY SUPER LOOP
             }
 
             //reading from the file
@@ -452,6 +418,15 @@ namespace CvMaker
 
             document.Add(photo);
             document.Close();
+        }
+
+        public void ValidateCki(ConsoleKeyInfo cki)
+        {
+            while (cki.Key.ToString() != "Y" && cki.Key.ToString() != "N")
+            {
+                Console.WriteLine(" (Invalid input. Type y-yes or n-no)");
+                cki = Console.ReadKey();
+            }
         }
     }
 }

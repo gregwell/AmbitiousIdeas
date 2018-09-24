@@ -64,7 +64,7 @@ namespace CvMaker
                     filewriter.WriteLine(Console.ReadLine());
                 }
 
-                ConsoleKeyInfo cki;
+                ConsoleKeyInfo cki = new ConsoleKeyInfo((char)ConsoleKey.RightArrow, ConsoleKey.RightArrow, false, false, false);
 
                 for (int j = 0; j < 4; j++)
                 {
@@ -100,7 +100,12 @@ namespace CvMaker
 
                     Question(wtf, counter);
                     cki = Console.ReadKey();
-                    ValidateCki(cki);
+
+                    while (cki.Key.ToString() != "Y" && cki.Key.ToString() != "N")
+                    {
+                        Console.WriteLine(" (Invalid input. Type y-yes or n-no)");
+                        cki = Console.ReadKey();
+                    }
 
                     if (cki.Key.ToString() == "Y")
                     {
@@ -109,7 +114,12 @@ namespace CvMaker
 
                         Question(wtf, counter);
                         cki = Console.ReadKey();
-                        ValidateCki(cki);
+
+                        while (cki.Key.ToString() != "Y" && cki.Key.ToString() != "N")
+                        {
+                            Console.WriteLine(" (Invalid input. Type y-yes or n-no)");
+                            cki = Console.ReadKey();
+                        }
 
                         if (cki.Key.ToString() == "Y")
                         {
@@ -118,7 +128,12 @@ namespace CvMaker
 
                             Question(wtf, counter);
                             cki = Console.ReadKey();
-                            ValidateCki(cki);
+
+                            while (cki.Key.ToString() != "Y" && cki.Key.ToString() != "N")
+                            {
+                                Console.WriteLine(" (Invalid input. Type y-yes or n-no)");
+                                cki = Console.ReadKey();
+                            }
 
                             if (cki.Key.ToString() == "Y")
                             {

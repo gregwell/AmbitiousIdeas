@@ -49,6 +49,7 @@ namespace CvMaker
             string[] writerline = new string[2];
             using (var filewriter = new StreamWriter("D:/saved.txt"))
             {
+                // identities
                 for (int i = 0; i < 4; i++)
                 {
                     switch (i)
@@ -61,54 +62,58 @@ namespace CvMaker
                     filewriter.WriteLine(Console.ReadLine());
                 }
 
+                //tables content
                 ConsoleKeyInfo cki = new ConsoleKeyInfo((char)ConsoleKey.RightArrow, ConsoleKey.RightArrow, false, false, false);
-
                 for (int j = 0; j < 4; j++)
                 {
-                    string wtf = "workplace";
+                    //work
+                    string category = "workplace";
                     string first = "proffesion";
                     string second = "work dates";
                     string third = "company name";
                     int counter = 1;
                     int noinfo = 3;
 
-                    if (j == 1)
+                    if (j == 1) //school
                     {
-                        wtf = "school";
+                        category = "school";
                         first = "school name";
                         second = "school dates";
                         third = "degree";
                     }
-                    else if (j == 2)
+                    else if (j == 2) //language
                     {
-                        wtf = "language";
+                        category = "language";
                         first = "language";
                         second = "advancement level";
                         noinfo = 2;
                     }
-                    else if (j == 3)
+                    else if (j == 3) //interests
                     {
-                        wtf = "interests";
+                        category = "interests";
                         first = "interest";
                         noinfo = 1;
                     }
+                    // checks whether user wants to add data
+                    cki = ValidateCki(cki, category, counter);
 
-                    cki = ValidateCki(cki, wtf, counter);
-
+                    //if yes then
                     if (cki.Key.ToString() == "Y")
                     {
-                        counter = WriteData(wtf, first, second, third, j, counter, filewriter);
-                        cki = ValidateCki(cki, wtf, counter);
+                        //ask user for data from this iteration
+                        counter = WriteData(category, first, second, third, j, counter, filewriter);
+                        cki = ValidateCki(cki, category, counter);
 
                         if (cki.Key.ToString() == "Y")
                         {
-                            counter = WriteData(wtf, first, second, third, j, counter, filewriter);
-                            cki = ValidateCki(cki, wtf, counter);
+                            counter = WriteData(category, first, second, third, j, counter, filewriter);
+                            cki = ValidateCki(cki, category, counter);
 
                             if (cki.Key.ToString() == "Y")
                             {
-                                counter = WriteData(wtf, first, second, third, j, counter, filewriter);
+                                counter = WriteData(category, first, second, third, j, counter, filewriter);
                             }
+                            //when user decide not to add data then write in this file line "no data".
                             else for (int i = 0; i < noinfo; i++) filewriter.WriteLine("no data");
                         }
                         else for (int i = 0; i < 2 * noinfo; i++) filewriter.WriteLine("no data");
@@ -116,6 +121,7 @@ namespace CvMaker
                     else for (int i = 0; i < 3 * noinfo; i++) filewriter.WriteLine("no data");
                 }
             }
+            //backup of user data is stored in this file.
 
             //reading from the file
             string[] line = new string[31];
@@ -126,6 +132,8 @@ namespace CvMaker
                     line[i] = reader.ReadLine();
                 }
             }
+
+            //name all lines with related name for further usage
 
             //personal data
             string[] personal = new string[4];
@@ -178,16 +186,18 @@ namespace CvMaker
             interestname[1] = line[29];
             interestname[2] = line[30];
 
+            //Decalre separators
             SolidLine solidline = new SolidLine(2f);
             LineSeparator separator = new LineSeparator(solidline);
             separator.SetMarginTop(10);
             separator.SetMarginBottom(10);
 
+            //headline ( CV + name)
             document.Add(new Paragraph(line[0]).SetFont(timesroman).SetFontSize(20));
             document.Add(new Paragraph("Cirraculum Vitae").SetFontSize(9).SetFont(italic));
 
+            //identities
             var person = new Table(new float[] { 1, 2 });
-
             Cell[] details = new Cell[3];
             Cell[] details_data = new Cell[3];
 
@@ -205,7 +215,7 @@ namespace CvMaker
                 person.AddCell(details_data[i]);
             }
 
-            // EXPERIENCE TABLE BELOW ----------------------------------
+            // Other table cells and paragraphs
 
             Paragraph[] pworkname = new Paragraph[3];
             Paragraph[] pworkplace = new Paragraph[3];
@@ -229,8 +239,7 @@ namespace CvMaker
             var languages = new Table(new float[] { 2, 5, 2 });
             var interests = new Table(new float[] { 2, 5, 2 });
 
-            // left side / title or empty /
-
+            // left side cell (with title or empty)
             Cell[] work_empty = new Cell[2];
             Cell[] school_empty = new Cell[2];
             Cell[] language_empty_left = new Cell[2];
@@ -263,7 +272,7 @@ namespace CvMaker
                 title[i].SetFont(timesroman).SetFontSize(15).SetBorder(Border.NO_BORDER).SetWidth(100);
             }
 
-            //experience table constructor
+            //table constructor
             for (int i = 0; i < 3; i++)
             {
                 //work

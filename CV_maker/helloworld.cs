@@ -99,13 +99,7 @@ namespace CvMaker
                     }
 
                     Question(wtf, counter);
-                    cki = Console.ReadKey();
-
-                    while (cki.Key.ToString() != "Y" && cki.Key.ToString() != "N")
-                    {
-                        Console.WriteLine(" (Invalid input. Type y-yes or n-no)");
-                        cki = Console.ReadKey();
-                    }
+                    cki = ValidateCki(cki);
 
                     if (cki.Key.ToString() == "Y")
                     {
@@ -113,13 +107,7 @@ namespace CvMaker
                         counter++;
 
                         Question(wtf, counter);
-                        cki = Console.ReadKey();
-
-                        while (cki.Key.ToString() != "Y" && cki.Key.ToString() != "N")
-                        {
-                            Console.WriteLine(" (Invalid input. Type y-yes or n-no)");
-                            cki = Console.ReadKey();
-                        }
+                        cki = ValidateCki(cki);
 
                         if (cki.Key.ToString() == "Y")
                         {
@@ -127,13 +115,7 @@ namespace CvMaker
                             counter++;
 
                             Question(wtf, counter);
-                            cki = Console.ReadKey();
-
-                            while (cki.Key.ToString() != "Y" && cki.Key.ToString() != "N")
-                            {
-                                Console.WriteLine(" (Invalid input. Type y-yes or n-no)");
-                                cki = Console.ReadKey();
-                            }
+                            cki = ValidateCki(cki);
 
                             if (cki.Key.ToString() == "Y")
                             {
@@ -400,13 +382,15 @@ namespace CvMaker
             document.Close();
         }
 
-        public void ValidateCki(ConsoleKeyInfo cki)
+        public ConsoleKeyInfo ValidateCki(ConsoleKeyInfo cki)
         {
+            cki = Console.ReadKey();
             while (cki.Key.ToString() != "Y" && cki.Key.ToString() != "N")
             {
                 Console.WriteLine(" (Invalid input. Type y-yes or n-no)");
                 cki = Console.ReadKey();
             }
+            return cki;
         }
 
         public void Question(string name, int number)

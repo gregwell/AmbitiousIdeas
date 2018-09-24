@@ -98,24 +98,21 @@ namespace CvMaker
                         noinfo = 1;
                     }
 
-                    Question(wtf, counter);
-                    cki = ValidateCki(cki);
+                    cki = ValidateCki(cki, wtf, counter);
 
                     if (cki.Key.ToString() == "Y")
                     {
                         WriteData(wtf, first, second, third, j, counter, filewriter);
                         counter++;
 
-                        Question(wtf, counter);
-                        cki = ValidateCki(cki);
+                        cki = ValidateCki(cki, wtf, counter);
 
                         if (cki.Key.ToString() == "Y")
                         {
                             WriteData(wtf, first, second, third, j, counter, filewriter);
                             counter++;
 
-                            Question(wtf, counter);
-                            cki = ValidateCki(cki);
+                            cki = ValidateCki(cki, wtf, counter);
 
                             if (cki.Key.ToString() == "Y")
                             {
@@ -382,8 +379,10 @@ namespace CvMaker
             document.Close();
         }
 
-        public ConsoleKeyInfo ValidateCki(ConsoleKeyInfo cki)
+        public ConsoleKeyInfo ValidateCki(ConsoleKeyInfo cki, string name, int number)
         {
+            Console.Write("\nWould you like to add {0} {1}? y - yes  n - no : ", name, number);
+
             cki = Console.ReadKey();
             while (cki.Key.ToString() != "Y" && cki.Key.ToString() != "N")
             {
@@ -391,11 +390,6 @@ namespace CvMaker
                 cki = Console.ReadKey();
             }
             return cki;
-        }
-
-        public void Question(string name, int number)
-        {
-            Console.Write("\nWould you like to add {0} {1}? y - yes  n - no : ", name, number);
         }
 
         public void WriteData(string name, string first, string second, string third, int j, int counter, StreamWriter filewriter)

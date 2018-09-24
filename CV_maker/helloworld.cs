@@ -72,9 +72,7 @@ namespace CvMaker
                     string first = "proffesion";
                     string second = "work dates";
                     string third = "company name";
-
                     int counter = 1;
-
                     int noinfo = 3;
 
                     if (j == 1)
@@ -102,21 +100,17 @@ namespace CvMaker
 
                     if (cki.Key.ToString() == "Y")
                     {
-                        WriteData(wtf, first, second, third, j, counter, filewriter);
-                        counter++;
-
+                        counter = WriteData(wtf, first, second, third, j, counter, filewriter);
                         cki = ValidateCki(cki, wtf, counter);
 
                         if (cki.Key.ToString() == "Y")
                         {
-                            WriteData(wtf, first, second, third, j, counter, filewriter);
-                            counter++;
-
+                            counter = WriteData(wtf, first, second, third, j, counter, filewriter);
                             cki = ValidateCki(cki, wtf, counter);
 
                             if (cki.Key.ToString() == "Y")
                             {
-                                WriteData(wtf, first, second, third, j, counter, filewriter);
+                                counter = WriteData(wtf, first, second, third, j, counter, filewriter);
                             }
                             else for (int i = 0; i < noinfo; i++) filewriter.WriteLine("no data");
                         }
@@ -392,7 +386,7 @@ namespace CvMaker
             return cki;
         }
 
-        public void WriteData(string name, string first, string second, string third, int j, int counter, StreamWriter filewriter)
+        public int WriteData(string name, string first, string second, string third, int j, int counter, StreamWriter filewriter)
         {
             Console.WriteLine("\n{0} {1}: ", name, counter);
             Console.Write("    {0}:", first);
@@ -407,6 +401,8 @@ namespace CvMaker
                     filewriter.WriteLine(Console.ReadLine());
                 }
             }
+            counter++;
+            return counter;
         }
     }
 }

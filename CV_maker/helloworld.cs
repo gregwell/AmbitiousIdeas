@@ -63,30 +63,27 @@ namespace Tutorial.Chapter01
                     }
                     filewriter.WriteLine(Console.ReadLine());
                 }
-                Console.Write("\nWould you like to add work place 1 ? y - yes  n - no : ");
-                ConsoleKeyInfo cki = Console.ReadKey();
 
-                while (cki.Key.ToString() != "Y" && cki.Key.ToString() != "N")
+                //  MY AMAZING LOOP FOR AUTOMATIZATION WORK AND SCHOOL TOGETGER FOREVER
+
+                ConsoleKeyInfo cki;
+
+                for (int j = 0; j < 2; j++)
                 {
-                    Console.WriteLine(" (Invalid input. Type y-yes or n-no)");
-                    cki = Console.ReadKey();
-                }
+                    string wtf = "workplace";
+                    string first = "proffesion";
+                    string second = "work dates";
+                    string third = "company name";
 
-                if (cki.Key.ToString() == "Y")
-                {
-                    Console.WriteLine("\nWorkplace 1: ");
-                    Console.Write("    work name:");
-                    filewriter.WriteLine(Console.ReadLine());
+                    if (j == 1)
+                    {
+                        wtf = "school";
+                        first = "school name";
+                        second = "school dates";
+                        third = "school place";
+                    }
 
-                    Console.Write("    work dates:");
-                    filewriter.WriteLine(Console.ReadLine());
-
-                    Console.Write("    work place:");
-                    filewriter.WriteLine(Console.ReadLine());
-
-                    //idea that all entered data can be displayed in top pannel of console window.?????
-
-                    Console.Write("Would you like to add work place 2? \nType: y - yes or n-no : ");
+                    Console.Write("\nWould you like to add {0} ? y - yes  n - no : ", wtf);
                     cki = Console.ReadKey();
 
                     while (cki.Key.ToString() != "Y" && cki.Key.ToString() != "N")
@@ -97,17 +94,17 @@ namespace Tutorial.Chapter01
 
                     if (cki.Key.ToString() == "Y")
                     {
-                        Console.WriteLine("\nWorkplace 2: ");
-                        Console.Write(" work name:");
+                        Console.WriteLine("\n{0} 1: ", wtf);
+                        Console.Write("    {0}:", first);
                         filewriter.WriteLine(Console.ReadLine());
 
-                        Console.Write(" work dates:");
+                        Console.Write("    {0}:", second);
                         filewriter.WriteLine(Console.ReadLine());
 
-                        Console.Write(" work place:");
+                        Console.Write("    {0}:", third);
                         filewriter.WriteLine(Console.ReadLine());
 
-                        Console.Write("Would you like to add work place 3? \nType: y - yes or n-no : ");
+                        Console.Write("Would you like to add {0} 2? \nType: y - yes or n-no : ", wtf);
                         cki = Console.ReadKey();
 
                         while (cki.Key.ToString() != "Y" && cki.Key.ToString() != "N")
@@ -118,110 +115,48 @@ namespace Tutorial.Chapter01
 
                         if (cki.Key.ToString() == "Y")
                         {
-                            Console.WriteLine("\nWorkplace 2: ");
-                            Console.Write(" work name:");
+                            Console.WriteLine("\n{0} 2: ", wtf);
+                            Console.Write("    {0}:", first);
                             filewriter.WriteLine(Console.ReadLine());
 
-                            Console.Write(" work dates:");
+                            Console.Write("    {0}:", second);
                             filewriter.WriteLine(Console.ReadLine());
 
-                            Console.Write(" work place:");
+                            Console.Write("    {0}:", third);
                             filewriter.WriteLine(Console.ReadLine());
-                        }
-                        else
-                        {
-                            for (int i = 0; i < 3; i++)
-                            {
-                                filewriter.WriteLine("no data");
-                            }
-                        }
-                    }
-                    else
-                    {
-                        for (int i = 0; i < 6; i++)
-                        {
-                            filewriter.WriteLine("no data");
-                        }
-                    }
-                }
-                else
-                {
-                    for (int i = 0; i < 9; i++)
-                    {
-                        filewriter.WriteLine("no data");
-                    }
-                }
 
-                Console.Write("\nWould you like to add education 1 ? y - yes  n - no : ");
-                cki = Console.ReadKey();
-                //the difference between normal string with one key and consolekeyinfo is that the second one
-                //forces console to show the form instantly, no enter needed).
-
-                while (cki.Key.ToString() != "Y" && cki.Key.ToString() != "N")
-                {
-                    Console.WriteLine(" (Invalid input. Type y-yes or n-no)");
-                    cki = Console.ReadKey();
-                }
-
-                //FIRST QUERY
-                if (cki.Key.ToString() == "Y")
-                {
-                    Console.WriteLine("\n Education 1: ");
-                    Console.Write("    education name:");
-                    filewriter.WriteLine(Console.ReadLine());
-
-                    Console.Write("    education years:");
-                    filewriter.WriteLine(Console.ReadLine());
-
-                    Console.Write("    education place:");
-                    filewriter.WriteLine(Console.ReadLine());
-
-                    Console.Write("Would you like to add education 2? Type: y - yes or n-no : ");
-                    cki = Console.ReadKey();
-
-                    while (cki.Key.ToString() != "Y" && cki.Key.ToString() != "N")
-                    {
-                        Console.WriteLine(" (Invalid input. Type y-yes or n-no)");
-                        cki = Console.ReadKey();
-                    }
-
-                    if (cki.Key.ToString() == "Y")
-                    {
-                        Console.WriteLine("\n Education 2: ");
-                        Console.Write("    education name:");
-                        filewriter.WriteLine(Console.ReadLine());
-
-                        Console.Write("    education years:");
-                        filewriter.WriteLine(Console.ReadLine());
-
-                        Console.Write("    education place:");
-                        filewriter.WriteLine(Console.ReadLine());
-
-                        Console.Write("Would you like to add education 3? Type: y - yes or n-no : ");
-                        cki = Console.ReadKey();
-
-                        while (cki.Key.ToString() != "Y" && cki.Key.ToString() != "N")
-                        {
-                            Console.WriteLine(" (Invalid input. Type y-yes or n-no)");
+                            Console.Write("Would you like to add {0} 3? \nType: y - yes or n-no : ", wtf);
                             cki = Console.ReadKey();
-                        }
 
-                        if (cki.Key.ToString() == "Y")
-                        {
-                            Console.WriteLine("\n Education 3: ");
-                            Console.Write("    education name:");
-                            filewriter.WriteLine(Console.ReadLine());
+                            while (cki.Key.ToString() != "Y" && cki.Key.ToString() != "N")
+                            {
+                                Console.WriteLine(" (Invalid input. Type y-yes or n-no)");
+                                cki = Console.ReadKey();
+                            }
 
-                            Console.Write("    education years:");
+                            if (cki.Key.ToString() == "Y")
+                            {
+                                Console.WriteLine("\n{0} 3: ", wtf);
+                                Console.Write("    {0}:", first);
+                                filewriter.WriteLine(Console.ReadLine());
 
-                            filewriter.WriteLine(Console.ReadLine());
+                                Console.Write("    {0}:", second);
+                                filewriter.WriteLine(Console.ReadLine());
 
-                            Console.Write("    education place:");
-                            filewriter.WriteLine(Console.ReadLine());
+                                Console.Write("    {0}:", third);
+                                filewriter.WriteLine(Console.ReadLine());
+                            }
+                            else
+                            {
+                                for (int i = 0; i < 3; i++)
+                                {
+                                    filewriter.WriteLine("no data");
+                                }
+                            }
                         }
                         else
                         {
-                            for (int i = 0; i < 3; i++)
+                            for (int i = 0; i < 6; i++)
                             {
                                 filewriter.WriteLine("no data");
                             }
@@ -229,17 +164,10 @@ namespace Tutorial.Chapter01
                     }
                     else
                     {
-                        for (int i = 0; i < 6; i++)
+                        for (int i = 0; i < 9; i++)
                         {
                             filewriter.WriteLine("no data");
                         }
-                    }
-                }
-                else
-                {
-                    for (int i = 0; i < 9; i++)
-                    {
-                        filewriter.WriteLine("no data");
                     }
                 }
 
@@ -653,13 +581,6 @@ namespace Tutorial.Chapter01
             if (!languages.IsEmpty()) document.Add(separator);
             document.Add(interests);
             if (!interests.IsEmpty()) document.Add(separator);
-
-            //would you like to add a new language?
-            //would you like to add a new interests?
-            //would you like to add a new skill?
-            // if yes - add to
-            //additional_table[0] and as a title[2 or more] (left panel) display the language/interests/skill you choose.
-            //or simply new tables language / interests/ skills and the same way of adding them to the document.
 
             document.Add(photo);
             document.Close();
